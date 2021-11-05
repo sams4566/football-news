@@ -19,5 +19,6 @@ from news import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', views.display_posts, name='display_posts')
+    path('', views.display_articles, name='display_articles'),
+    path('add', views.add_article, name='add_article'),
 ]
