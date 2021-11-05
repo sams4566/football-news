@@ -1,6 +1,6 @@
 from django.db import models
 from cloudinary.models import CloudinaryField
-from django.contrib.auth.models import User=
+from django.contrib.auth.models import User
 
 class Article(models.Model):
     author = models.ForeignKey(User, related_name="news_article", on_delete=models.CASCADE)
