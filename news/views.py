@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Article
 
 def display_articles(request):
-    articles = Article.objects.all()
+    articles = Article.objects.all().filter(approved=True)
     context = {
         'articles': articles
     }
