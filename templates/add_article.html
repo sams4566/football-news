@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<form action="add" method="POST">
+<!-- <form action="add" method="POST">
     {% csrf_token %}
     <div>
         <label for="article_name"></label>
@@ -11,6 +11,18 @@
     <div>
         <button type="submit">Add Article</button>
     </div>
+</form> -->
+
+{% if user.is_authenticated %}
+<form method="POST">
+    {{ article_form }}
+    {% csrf_token %}
+    <div>
+        <button type="submit">Add Article</button>
+    </div>
 </form>
+{% else %}
+<h1>Login to make a new post</h1>
+{% endif %}
 
 {% endblock %}
