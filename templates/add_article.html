@@ -1,5 +1,6 @@
 {% extends "base.html" %}
 
+
 {% block content %}
 
 <!-- <form action="add" method="POST">
@@ -14,7 +15,7 @@
 </form> -->
 
 {% if user.is_authenticated %}
-<form method="POST">
+<form action="{{ news.views.add_article }}" method="POST" enctype="multipart/form-data">
     {{ article_form }}
     {% csrf_token %}
     <div>

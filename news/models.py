@@ -9,10 +9,9 @@ class Article(models.Model):
     slug = models.SlugField(unique=True, max_length=250)
     time_created = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
-    article_image = CloudinaryField('image', default='default_image')
     content = models.TextField()
-
-
+    image = CloudinaryField('image', default='default_image')
+    
     def __str__(self):
         return self.name
 
