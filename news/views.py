@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article, Comment
-from .forms import ArticleDetails, CommentForm
+from .models import Article
+from .forms import ArticleDetails
 
 def display_articles(request):
     articles = Article.objects.all().filter(approved=True)
@@ -10,13 +10,12 @@ def display_articles(request):
     return render(request, 'index.html', context)
 
 def add_article(request):
-
-    article_form = ArticleDetails(data=request.POST)
-    if article_form.is_valid():
-        article_form.save()
-        return redirect('display_articles')
-    else:
-        article_form = ArticleDetails()
+    if request.method == 'POST':
+        article_form = ArticleDetails(data=request.POST)
+        if article_form.is_valid():
+            article_form.save()
+            return redirect('display_articles')
+    article_form = ArticleDetails()
     context = {
         "article_form": ArticleDetails()
     }
@@ -29,16 +28,15 @@ def add_article(request):
     # return render(request, 'add_article.html')
 
 def view_article(request, article_id):
-    article_comment = CommentForm(data=request.POST)
-    if article_comment.is_valid():
-        article_comment.save()
-        return redirect('display_articles')
-    else:
-        article_comment = CommentForm()
-    context = {
-        "article_comment": CommentForm()
-        
-    }
+#     article_comment = CommentForm(data=request.POST)
+#     if article_comment.is_valid():
+#         article_comment.save()
+#         return redirect('display_articles')
+#     else:
+#         article_comment = CommentForm()
+#     context = {
+#         "article_comment": CommentForm()
+#     }
     return render(request, 'article.html')
 
 
