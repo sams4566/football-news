@@ -15,8 +15,10 @@ class Article(models.Model):
     def __str__(self):
         return self.name
 
-# class Comment(models.Model):
-#     body = models.TextField()
+class Comment(models.Model):
+    post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="post_comment", default=1)
+    body = models.TextField()
+    time_created = models.DateTimeField(auto_now_add=True)
 
-#     def __str__(self):
-#         return self.body
+    def __str__(self):
+        return self.body

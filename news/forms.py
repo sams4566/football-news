@@ -1,4 +1,4 @@
-from .models import Article
+from .models import Article, Comment
 from django import forms
 
 class ArticleForm(forms.ModelForm):
@@ -6,7 +6,7 @@ class ArticleForm(forms.ModelForm):
         model = Article
         fields = ('name', 'slug', 'content', 'image', 'author',)
 
-# class CommentForm(forms.ModelForm):
-#     class Meta: 
-#         model = Comment
-#         fields = ('body',)
+class CommentForm(forms.ModelForm):
+    class Meta: 
+        model = Comment
+        fields = ('body',)

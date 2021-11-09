@@ -1,6 +1,6 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article
-from .forms import ArticleForm
+from .models import Article, Comment
+from .forms import ArticleForm, CommentForm
 
 def display_articles(request):
     articles = Article.objects.all().filter(approved=True)
@@ -27,19 +27,22 @@ def add_article(request):
     #     return redirect('display_articles')
     # return render(request, 'add_article.html')
 
-def view_article(request, article_id):
-#     article_comment = CommentForm(data=request.POST)
-#     if article_comment.is_valid():
-#         article_comment.save()
-#         return redirect('display_articles')
-#     else:
-#         article_comment = CommentForm()
-#     context = {
-#         "article_comment": CommentForm()
-#     }
+def view_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
+    comments = Comment.objects.all()
+
+    if request.method == 'POST':
+        article_comment = CommentForm(data=request.POST)
+        if article_comment.is_valid():
+            article_comment.save()
+            return redirect('view_article', article_id=article_id)
+    else:
+        article_comment = CommentForm()
+        
     context = {
-        "article": article
+        "article": article,
+        "article_comment": CommentForm(),
+        "comments": comments,
     }
     return render(request, 'article.html', context)
 

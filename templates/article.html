@@ -3,16 +3,15 @@
 {% block content %}
 
 <h1>Hello</h1>
-<h1>{{ article.author }}</h1>
+<!-- <h1>{{ article.author }}</h1>
 <h1>{{ article.name }}</h1>
 <h1>{{ article.slug }}</h1>
 <h1>{{ article.time_created }}</h1>
 <h1>{{ article.updated_time }}</h1>
 <h1>{{ article.content }}</h1>
-<h1>{{ article.id}}</h1>
+<h1>{{ article.id }}</h1>
 <h1>{{ article.image.url}}</h1>
-<h1>{{ article.image}}</h1>
-
+<h1>{{ article.image}}</h1> -->
 
 {% if "default_image" in article.image.url %}
 <img src="https://obamabcn.com/wp-content/uploads/2019/11/logo-premier-league.jpg" width="100%">
@@ -20,7 +19,7 @@
 <img src="{{ article.image.url }}" width="100%">
 {% endif %}
 
-<!-- {% if user.is_authenticated %}
+{% if user.is_authenticated %}
 <form method="POST">
     {{ article_comment }}
     {% csrf_token %}
@@ -30,6 +29,16 @@
 </form>
 {% else %}
 <h1>Login to make a new comment</h1>
-{% endif %} -->
+{% endif %}
+
+<div>
+    <h1>Comments</h1>
+    <div>
+        {% for comment in comments %}
+        <p>{{ comment.body }}</p>
+        <p>{{ comment.id }}</p>
+        {% endfor %}
+    </div>
+</div>
 
 {% endblock %}
