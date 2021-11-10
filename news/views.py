@@ -28,20 +28,23 @@ def add_article(request):
     # return render(request, 'add_article.html')
 
 def view_article(request, article_id, *args, **kwargs):
-    article = get_object_or_404(Article, id=article_id)
-    comments = Comment.objects.all()
 
+    article = get_object_or_404(Article, id=article_id)
+    comments = article.post_comment.order_by('time_created_comment')
     if request.method == 'POST':
-        article_comment = CommentForm(data=request.POST)
-        if article_comment.is_valid():
-            article_comment.save()
+        form = CommentForm(request.POST, instance=article)
+        if form.is_valid():
+            obj = Comment()
+            obj.body = form.cleaned_data['body']
+            obj.users_name = form.cleaned_data['users_name']
+            obj.email = form.cleaned_data['email']
+            obj.post = article
+            obj.save()
             return redirect('view_article', article_id=article_id)
-    else:
-        article_comment = CommentForm()
-        
+    form = CommentForm()        
     context = {
         "article": article,
-        "article_comment": CommentForm(),
+        "article_comment": form,
         "comments": comments,
     }
     return render(request, 'article.html', context)
