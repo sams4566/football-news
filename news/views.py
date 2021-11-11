@@ -40,14 +40,26 @@ def view_article(request, article_id, *args, **kwargs):
             obj.post = article
             obj.save()
             return redirect('view_article', article_id=article_id)
-    form = CommentForm()        
+    form = CommentForm()     
+    upvoted = False
+    if article.upvote.filter(id=request.user.id).exists():
+        upvoted = True   
     context = {
         "article": article,
         "article_comment": form,
         "comments": comments,
+        "upvoted": upvoted,
     }
     return render(request, 'article.html', context)
 
+def upvote_article(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    if article.upvote.filter(id=request.user.id).exists():
+        article.upvote.remove(request.user)
+    else:
+        article.upvote.add(request.user)
+    print(request.user.id)
+    return redirect('view_article', article_id=article_id)
 
 def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)

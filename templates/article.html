@@ -20,6 +20,19 @@
 {% endif %} -->
 
 {% if user.is_authenticated %}
+<form action="{% url 'upvote_article' article.id %}" method="POST">
+    {% csrf_token %}
+    {% if upvoted %}
+    <button><i class="fas fa-arrow-up green"></i></button>
+    {% else %}
+    <button><i class="fas fa-arrow-up"></i></button>
+    {% endif %}
+</form>
+<p>{{ article.upvotes_count }}</p>
+{% endif %}
+
+
+{% if user.is_authenticated %}
 <form method="POST">
     {{ article_comment }}
     {% csrf_token %}
@@ -38,11 +51,11 @@
             
             <p>{{ comment.body }}</p>
             <p>{{ comment.users_name }}</p>
-            <!-- <p>{{ user.username }}</p> -->
             <p>{{ article.author }}</p>
             {% if user == comment.users_name %}
             <a class="btn btn-primary" href="/delete1/{{ comment.id }}">Delete Comment</a>
             {% endif %}
+
         {% endfor %}
     </div>
 </div>

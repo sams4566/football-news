@@ -10,7 +10,11 @@ class Article(models.Model):
     time_created = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
     content = models.TextField()
-    image = CloudinaryField('image', default='default_image')
+    image = CloudinaryField("image", default="default_image")
+    upvote = models.ManyToManyField(User, blank=True, related_name="news_upvotes")
+
+    def upvotes_count(self):
+        return self.upvote.count()
     
     def __str__(self):
         return self.headline
