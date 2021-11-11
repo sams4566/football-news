@@ -58,7 +58,6 @@ def upvote_article(request, article_id, *args, **kwargs):
         article.upvote.remove(request.user)
     else:
         article.upvote.add(request.user)
-    print(request.user.id)
     return redirect('view_article', article_id=article_id)
 
 def delete_article(request, article_id):

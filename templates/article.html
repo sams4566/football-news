@@ -2,15 +2,15 @@
 
 {% block content %}
 
-<h1>Hello</h1>
+<!-- <h1>Hello</h1>
 <h1>{{ article.author }}</h1>
 <h1>{{ article.headline }}</h1>
 <h1>{{ article.slug }}</h1>
-<!-- <h1>{{ article.time_created }}</h1>
-<h1>{{ article.updated_time }}</h1> -->
+<h1>{{ article.time_created }}</h1>
+<h1>{{ article.updated_time }}</h1>
 <h1>{{ article.content }}</h1>
 <h1>{{ article.id }}</h1>
-<!-- <h1>{{ article.image.url}}</h1>
+<h1>{{ article.image.url}}</h1>
 <h1>{{ article.image}}</h1> -->
 
 <!-- {% if "default_image" in article.image.url %}
@@ -18,6 +18,16 @@
 {% else %}
 <img src="{{ article.image.url }}" width="100%">
 {% endif %} -->
+
+<h1>Headline: {{ article.headline }}</h1>
+<h3>Content: {{ article.content }}</h3>
+<h5>Article Author: {{ article.author }}</h5>
+
+{% if "default_image" in article.image.url %}
+<img src="https://obamabcn.com/wp-content/uploads/2019/11/logo-premier-league.jpg" width="10%">
+{% else %}
+<img src="{{ article.image.url }}" width="10%">
+{% endif %}
 
 {% if user.is_authenticated %}
 <form action="{% url 'upvote_article' article.id %}" method="POST">
@@ -28,7 +38,7 @@
     <button><i class="fas fa-arrow-up"></i></button>
     {% endif %}
 </form>
-<p>{{ article.upvotes_count }}</p>
+<p>Upvotes: {{ article.upvotes_count }}</p>
 {% endif %}
 
 
@@ -37,7 +47,7 @@
     {{ article_comment }}
     {% csrf_token %}
     <div>
-        <button type="submit">Add Article</button>
+        <button type="submit">Add Comment</button>
     </div>
 </form>
 {% else %}
@@ -50,8 +60,7 @@
         {% for comment in comments %}
             
             <p>{{ comment.body }}</p>
-            <p>{{ comment.users_name }}</p>
-            <p>{{ article.author }}</p>
+            <p>By: {{ comment.users_name }}</p>
             {% if user == comment.users_name %}
             <a class="btn btn-primary" href="/delete1/{{ comment.id }}">Delete Comment</a>
             {% endif %}
