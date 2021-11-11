@@ -4,7 +4,12 @@ from .forms import ArticleForm, CommentForm
 from django.contrib.auth.models import User
 
 def display_articles(request):
-    articles = Article.objects.all().filter(approved=True)
+    articles = list(Article.objects.filter(approved=True).all())
+    # articles.sort(lambda article: article.upvotes_count())
+    
+    def sort_article(article):
+        return article.upvotes_count()
+    articles.sort(key=sort_article, reverse=True)
     context = {
         'articles': articles
     }
@@ -36,7 +41,7 @@ def view_article(request, article_id, *args, **kwargs):
         if form.is_valid():
             obj = Comment()
             obj.body = form.cleaned_data['body']
-            obj.users_name = form.cleaned_data['users_name']
+            obj.users_name = request.user
             obj.post = article
             obj.save()
             return redirect('view_article', article_id=article_id)
@@ -52,8 +57,8 @@ def view_article(request, article_id, *args, **kwargs):
     }
     return render(request, 'article.html', context)
 
-def upvote_article(request, article_id, *args, **kwargs):
-    article = get_object_or_404(Article, id=article_id)
+def upvote_article(request, article_id, slug, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id, slug=slug)
     if article.upvote.filter(id=request.user.id).exists():
         article.upvote.remove(request.user)
     else:
