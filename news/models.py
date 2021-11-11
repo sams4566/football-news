@@ -12,10 +12,14 @@ class Article(models.Model):
     content = models.TextField()
     image = CloudinaryField("image", default="default_image")
     upvote = models.ManyToManyField(User, blank=True, related_name="news_upvotes")
+    downvote = models.ManyToManyField(User, blank=True, related_name="news_downvotes")
 
     def upvotes_count(self):
         return self.upvote.count()
-    
+
+    def downvotes_count(self):
+        return self.downvote.count()
+        
     def __str__(self):
         return self.headline
 

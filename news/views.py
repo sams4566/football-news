@@ -4,11 +4,9 @@ from .forms import ArticleForm, CommentForm
 from django.contrib.auth.models import User
 
 def display_articles(request):
-    articles = list(Article.objects.filter(approved=True).all())
-    # articles.sort(lambda article: article.upvotes_count())
-    
+    articles = list(Article.objects.all().filter(approved=True))    
     def sort_article(article):
-        return article.upvotes_count()
+        return article.upvotes_count() - article.downvotes_count()
     articles.sort(key=sort_article, reverse=True)
     context = {
         'articles': articles
@@ -49,20 +47,38 @@ def view_article(request, article_id, *args, **kwargs):
     upvoted = False
     if article.upvote.filter(id=request.user.id).exists():
         upvoted = True   
+    downvoted = False
+    if article.downvote.filter(id=request.user.id).exists():
+        downvoted = True 
+
+    vote_count = article.upvote.count() - article.downvote.count()
+
     context = {
         "article": article,
         "article_comment": form,
         "comments": comments,
         "upvoted": upvoted,
+        "downvoted": downvoted,
+        "vote_count": vote_count,
     }
     return render(request, 'article.html', context)
 
-def upvote_article(request, article_id, slug, *args, **kwargs):
-    article = get_object_or_404(Article, id=article_id, slug=slug)
+def upvote_article(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
     if article.upvote.filter(id=request.user.id).exists():
         article.upvote.remove(request.user)
     else:
         article.upvote.add(request.user)
+        article.downvote.remove(request.user)
+    return redirect('view_article', article_id=article_id)
+
+def downvote_article(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    if article.downvote.filter(id=request.user.id).exists():
+        article.downvote.remove(request.user)
+    else:
+        article.downvote.add(request.user)
+        article.upvote.remove(request.user)
     return redirect('view_article', article_id=article_id)
 
 def delete_article(request, article_id):

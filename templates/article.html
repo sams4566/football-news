@@ -38,7 +38,18 @@
     <button><i class="fas fa-arrow-up"></i></button>
     {% endif %}
 </form>
+<p>Total votes: {{ vote_count }}</p>
 <p>Upvotes: {{ article.upvotes_count }}</p>
+
+<form action="{% url 'downvote_article' article.id %}" method="POST">
+    {% csrf_token %}
+    {% if downvoted %}
+    <button><i class="fas fa-arrow-down red"></i></button>
+    {% else %}
+    <button><i class="fas fa-arrow-down"></i></button>
+    {% endif %}
+</form>
+<p>Downvotes: {{ article.downvotes_count }}</p>
 {% endif %}
 
 
