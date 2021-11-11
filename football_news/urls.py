@@ -24,4 +24,5 @@ urlpatterns = [
     path('add', views.add_article, name='add_article'),
     path('article/<article_id>', views.view_article, name='view_article'),
     path('delete/<article_id>', views.delete_article, name='delete_article'),
+    path('delete1/<comment_id>', views.delete_comment, name='delete_comment'),
 ]

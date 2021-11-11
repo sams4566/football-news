@@ -1,6 +1,7 @@
 from django.shortcuts import redirect, render, get_object_or_404
 from .models import Article, Comment
 from .forms import ArticleForm, CommentForm
+from django.contrib.auth.models import User
 
 def display_articles(request):
     articles = Article.objects.all().filter(approved=True)
@@ -28,7 +29,6 @@ def add_article(request):
     # return render(request, 'add_article.html')
 
 def view_article(request, article_id, *args, **kwargs):
-
     article = get_object_or_404(Article, id=article_id)
     comments = article.post_comment.order_by('time_created_comment')
     if request.method == 'POST':
@@ -37,7 +37,6 @@ def view_article(request, article_id, *args, **kwargs):
             obj = Comment()
             obj.body = form.cleaned_data['body']
             obj.users_name = form.cleaned_data['users_name']
-            obj.email = form.cleaned_data['email']
             obj.post = article
             obj.save()
             return redirect('view_article', article_id=article_id)
@@ -54,4 +53,10 @@ def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
     article.delete()
     return redirect('display_articles')
+
+def delete_comment(request, comment_id, *args, **kwargs):
+    comment = get_object_or_404(Comment, id=comment_id)
+    article_id = comment.post_id
+    comment.delete()
+    return redirect('view_article', article_id=article_id)
 

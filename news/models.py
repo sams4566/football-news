@@ -19,8 +19,7 @@ class Comment(models.Model):
     post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="post_comment")
     body = models.TextField()
     time_created_comment = models.DateTimeField(auto_now_add=True)
-    users_name = models.CharField(max_length=100)
-    email = models.EmailField()
+    users_name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users_name")
 
     def __str__(self):
         return self.body

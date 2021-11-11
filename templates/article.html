@@ -35,9 +35,14 @@
     <h1>Comments</h1>
     <div>
         {% for comment in comments %}
-        <p>{{ comment.body }}</p>
-        <p>{{ comment.users_name }}</p>
-        <p>{{ comment.email }}</p>
+            
+            <p>{{ comment.body }}</p>
+            <p>{{ comment.users_name }}</p>
+            <!-- <p>{{ user.username }}</p> -->
+            <p>{{ article.author }}</p>
+            {% if user == comment.users_name %}
+            <a class="btn btn-primary" href="/delete1/{{ comment.id }}">Delete Comment</a>
+            {% endif %}
         {% endfor %}
     </div>
 </div>
