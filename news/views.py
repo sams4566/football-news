@@ -17,6 +17,7 @@ def add_article(request):
     if request.method == 'POST':
         article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
+            article_form.instance.author = request.user
             article_form.save()
             return redirect('display_articles')
     article_form = ArticleForm()
@@ -30,6 +31,19 @@ def add_article(request):
     #     Article.objects.create(name=name)
     #     return redirect('display_articles')
     # return render(request, 'add_article.html')
+
+def edit_article(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    if request.method == 'POST':
+        form = ArticleForm(request.POST, request.FILES, instance=article)
+        if form.is_valid():
+            form.save()
+            return redirect('view_article', article_id=article_id)
+    form = ArticleForm(instance=article)
+    context = {
+        'form': form
+    }
+    return render(request, 'edit_article.html', context)
 
 def view_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)

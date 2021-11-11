@@ -27,6 +27,7 @@
                     <a class="btn btn-primary" href="/article/{{ article.id }}">Read more →</a>
                     {% if user == article.author %}
                     <a class="btn btn-primary" href="/delete/{{ article.id }}">Delete Article</a>
+                    <a class="btn btn-primary" href='/edit/{{ article.id }}'>Edit Article</a>
                     {% endif %}
                 </div>
             </div>

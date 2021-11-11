@@ -22,6 +22,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', views.display_articles, name='display_articles'),
     path('add', views.add_article, name='add_article'),
+    path('edit/<article_id>', views.edit_article, name='edit_article'),
     path('article/<article_id>', views.view_article, name='view_article'),
     path('upvote/<article_id>', views.upvote_article, name='upvote_article'),
     path('downvote/<article_id>', views.downvote_article, name='downvote_article'),
