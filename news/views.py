@@ -40,8 +40,8 @@ def delete_category(request, category_id):
     category.delete()
     return redirect('display_categories')
 
-def display_articles(request):
-    articles = list(Article.objects.all().filter(approved=True))    
+def display_top_articles(request):
+    articles = list(Article.objects.all().filter(approved=True))
     def sort_article(article):
         return article.upvotes_count() - article.downvotes_count()
     articles.sort(key=sort_article, reverse=True)
@@ -50,13 +50,26 @@ def display_articles(request):
     }
     return render(request, 'index.html', context)
 
+def display_articles(request, category_id):
+    category_name = category_id
+    articles = list(Article.objects.all().filter(approved=True, category_name=category_name))
+    print(category_id)
+    def sort_article(article):
+        return article.upvotes_count() - article.downvotes_count()
+    articles.sort(key=sort_article, reverse=True)
+    context = {
+        'articles': articles
+    }
+    return render(request, 'category_articles.html', context)
+
 def add_article(request):
     if request.method == 'POST':
         article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article_form.instance.author = request.user
             article_form.save()
-            return redirect('display_articles')
+            category_id = article_form.instance.category_name_id
+            return redirect('display_articles', category_id=category_id)
     article_form = ArticleForm()
     context = {
         "article_form": ArticleForm()
@@ -134,8 +147,9 @@ def downvote_article(request, article_id, *args, **kwargs):
 
 def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
+    category_id = article.category_name_id
     article.delete()
-    return redirect('display_articles')
+    return redirect('display_articles', category_id=category_id)
 
 def delete_comment(request, comment_id, *args, **kwargs):
     comment = get_object_or_404(Comment, id=comment_id)

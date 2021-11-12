@@ -73,7 +73,7 @@
             <p>{{ comment.body }}</p>
             <p>By: {{ comment.users_name }}</p>
             {% if user == comment.users_name %}
-            <a class="btn btn-primary" href="comment/delete/{{ comment.id }}">Delete Comment</a>
+            <a class="btn btn-primary" href="/comment/delete/{{ comment.id }}">Delete Comment</a>
             {% endif %}
 
         {% endfor %}

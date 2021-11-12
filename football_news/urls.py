@@ -20,11 +20,12 @@ from news import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', views.display_articles, name='display_articles'),
+    path('', views.display_top_articles, name='display_top_articles'),
     path('categories', views.display_categories, name='display_categories'),
     path('category/add', views.add_category, name='category'),
     path('category/edit/<category_id>', views.edit_category, name='edit_category'),
     path('category/delete/<category_id>', views.delete_category, name='delete_category'),
+    path('category/article/<category_id>', views.display_articles, name='display_articles'),
     path('article/add', views.add_article, name='add_article'),
     path('article/edit/<article_id>', views.edit_article, name='edit_article'),
     path('article/view/<article_id>', views.view_article, name='view_article'),
