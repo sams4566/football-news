@@ -24,16 +24,15 @@
                     <div class="small text-muted">January 1, 2021</div>
                     <h2 class="card-title">{{ category.category_name }}</h2>
                     <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a class="btn btn-primary" href="/category/{{ category.id }}">Read more →</a>
-                    {% if user == article.author %}
-                    <a class="btn btn-primary" href="/delete/{{ category.id }}">Delete Article</a>
-                    <a class="btn btn-primary" href='/edit/{{ category.id }}'>Edit Article</a>
-                    {% endif %}
+                    <a class="btn btn-primary" href="/category/view/{{ category.id }}">Read more →</a>
+                    <a class="btn btn-primary" href="/category/delete/{{ category.id }}">Delete Article</a>
+                    <a class="btn btn-primary" href='/category/edit/{{ category.id }}'>Edit Article</a>
+                
                 </div>
             </div>
             {% endfor %}
-            <a class="btn btn-primary" href='/add'>Add Article</a>
-            <a class="btn btn-primary" href='/categories/add'>Add Category</a>
+            <!-- <a class="btn btn-primary" href='/article/add'>Add Article</a> -->
+            <a class="btn btn-primary" href='/category/add'>Add Category</a>
             <!-- Nested row for non-featured blog posts-->
             <!-- <div class="row">
                 <div class="col-lg-6">

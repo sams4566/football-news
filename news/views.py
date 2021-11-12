@@ -22,6 +22,19 @@ def add_category(request):
     }
     return render(request, 'add_category.html', context)
 
+def edit_category(request, category_id, *args, **kwargs):
+    category = get_object_or_404(Category, id=category_id)
+    if request.method == 'POST':
+        form = CategoryForm(request.POST, instance=category)
+        if form.is_valid():
+            form.save()
+            return redirect('display_categories')
+    form = CategoryForm(instance=category)
+    context = {
+        'form': form
+    }
+    return render(request, 'edit_category.html', context)
+
 def display_articles(request):
     articles = list(Article.objects.all().filter(approved=True))    
     def sort_article(article):

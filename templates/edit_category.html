@@ -15,11 +15,11 @@
 </form> -->
 
 {% if user.is_authenticated %}
-<form action="{{ news.views.edit_article }}" method="POST" enctype="multipart/form-data">
+<form action="{{ news.views.edit_category }}" method="POST" enctype="multipart/form-data">
     {{ form }}
     {% csrf_token %}
     <div>
-        <button type="submit">Edit Article</button>
+        <button type="submit">Edit Category</button>
     </div>
 </form>
 {% else %}
