@@ -24,6 +24,7 @@ urlpatterns = [
     path('categories', views.display_categories, name='display_categories'),
     path('category/add', views.add_category, name='category'),
     path('category/edit/<category_id>', views.edit_category, name='edit_category'),
+    path('category/delete/<category_id>', views.delete_category, name='delete_category'),
     path('article/add', views.add_article, name='add_article'),
     path('article/edit/<article_id>', views.edit_article, name='edit_article'),
     path('article/view/<article_id>', views.view_article, name='view_article'),

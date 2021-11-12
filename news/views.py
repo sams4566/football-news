@@ -35,6 +35,11 @@ def edit_category(request, category_id, *args, **kwargs):
     }
     return render(request, 'edit_category.html', context)
 
+def delete_category(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
+    category.delete()
+    return redirect('display_categories')
+
 def display_articles(request):
     articles = list(Article.objects.all().filter(approved=True))    
     def sort_article(article):
