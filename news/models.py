@@ -2,6 +2,13 @@ from django.db import models
 from cloudinary.models import CloudinaryField
 from django.contrib.auth.models import User
 
+
+class Category(models.Model):
+    category_name = models.CharField(unique=True, max_length=250)
+
+    def __str__(self):
+            return self.category_name
+
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article")
     headline = models.CharField(unique=True, max_length=250)
@@ -13,6 +20,7 @@ class Article(models.Model):
     image = CloudinaryField("image", default="default_image")
     upvote = models.ManyToManyField(User, blank=True, related_name="news_upvotes")
     downvote = models.ManyToManyField(User, blank=True, related_name="news_downvotes")
+    category_name = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="post_comment")
 
     def upvotes_count(self):
         return self.upvote.count()

@@ -1,7 +1,26 @@
 from django.shortcuts import redirect, render, get_object_or_404
-from .models import Article, Comment
-from .forms import ArticleForm, CommentForm
+from .models import Article, Comment, Category
+from .forms import ArticleForm, CommentForm, CategoryForm
 from django.contrib.auth.models import User
+
+def display_categories(request):
+    categories = Category.objects.all() 
+    context = {
+        'categories': categories
+    }
+    return render(request, 'categories.html', context)
+
+def add_category(request):
+    if request.method == 'POST':
+        form = CategoryForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect('display_categories')
+    form = CategoryForm()
+    context = {
+        "form": CategoryForm()
+    }
+    return render(request, 'add_category.html', context)
 
 def display_articles(request):
     articles = list(Article.objects.all().filter(approved=True))    

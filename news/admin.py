@@ -1,5 +1,10 @@
 from django.contrib import admin
-from .models import Article, Comment
+from .models import Article, Comment, Category
+
+@admin.register(Category)
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('category_name',)
+
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):

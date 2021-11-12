@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block content %}
+
+<!-- <form action="add" method="POST">
+    {% csrf_token %}
+    <div>
+        <label for="article_name"></label>
+        <input type="text" id="article_name" name="article_name">
+    </div>
+    <div>
+        <button type="submit">Add Article</button>
+    </div>
+</form> -->
+
+{% if user.is_authenticated %}
+<form action="{{ news.views.add_category }}" method="POST" enctype="multipart/form-data">
+    {{ form }}
+    {% csrf_token %}
+    <div>
+        <button type="submit">Add Category</button>
+    </div>
+</form>
+{% else %}
+<h1>Login to make a new category</h1>
+{% endif %}
+
+{% endblock %}

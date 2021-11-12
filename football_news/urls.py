@@ -21,6 +21,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
     path('', views.display_articles, name='display_articles'),
+    path('categories', views.display_categories, name='display_categories'),
+    path('categories/add', views.add_category, name='category'),
     path('add', views.add_article, name='add_article'),
     path('edit/<article_id>', views.edit_article, name='edit_article'),
     path('article/<article_id>', views.view_article, name='view_article'),
