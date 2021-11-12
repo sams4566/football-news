@@ -11294,3 +11294,11 @@ textarea.form-control-lg {
 .red {
   background-color: red;
 }
+
+.background-photo {
+  background: url('../assets/background.jpg') no-repeat center center;
+  height: 100%;
+  width: 100%;
+  background-size: cover;
+  opacity: 0.1;
+}

@@ -2,8 +2,7 @@
 
 {% block content %}
 
-<!-- Page header with logo and tagline-->
-<header class="py-5 bg-light border-bottom mb-4">
+<header class="py-5 bg-light border-bottom mb-4 background-photo">
     <div class="container">
         <div class="text-center my-5">
             <h1 class="fw-bolder">Welcome to Football News!</h1>
@@ -11,53 +10,35 @@
         </div>
     </div>
 </header>
-<!-- Page content-->
+
+
 <div class="container">
     <div class="row">
-        <!-- Blog entries-->
         <div class="col-lg-12">
-            <!-- Featured blog post-->
+            <div class="row">
             {% for article in articles %}
-            <div class="card mb-4">
-                <a href="#!"><img class="card-img-top" src="https://dummyimage.com/850x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                <div class="card-body">
-                    <div class="small text-muted">January 1, 2021</div>
-                    <h2 class="card-title">{{ article.headline }}</h2>
-                    <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
-                    <a class="btn btn-primary" href="/article/view/{{ article.id }}">Read more →</a>
-                    {% if user == article.author %}
-                    <a class="btn btn-primary" href="/article/delete/{{ article.id }}">Delete Article</a>
-                    <a class="btn btn-primary" href='/article/edit/{{ article.id }}'>Edit Article</a>
-                    {% endif %}
-                </div>
-            </div>
-            {% endfor %}
-            <a class="btn btn-primary" href='/article/add'>Add Article</a>
-            <!-- <a class="btn btn-primary" href='/category'>Add Category</a> -->
-            <!-- Nested row for non-featured blog posts-->
-            <!-- <div class="row">
                 <div class="col-lg-6">
                     <div class="card mb-4">
                         <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
                         <div class="card-body">
                             <div class="small text-muted">January 1, 2021</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
-                        </div>
-                    </div>
-                    <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                        <div class="card-body">
-                            <div class="small text-muted">January 1, 2021</div>
-                            <h2 class="card-title h4">Post Title</h2>
-                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla.</p>
-                            <a class="btn btn-primary" href="#!">Read more →</a>
+                            <h2 class="card-title">{{ article.headline }}</h2>
+                            <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reiciendis aliquid atque, nulla? Quos cum ex quis soluta, a laboriosam. Dicta expedita corporis animi vero voluptate voluptatibus possimus, veniam magni quis!</p>
+                            <a class="btn btn-primary" href="/article/view/{{ article.id }}">Read more →</a>
+                            {% if user == article.author %}
+                            <a class="btn btn-primary" href="/article/delete/{{ article.id }}">Delete Article</a>
+                            <a class="btn btn-primary" href='/article/edit/{{ article.id }}'>Edit Article</a>
+                            <p class="card-text text-muted h6"></p>
+                            {% endif %}
                         </div>
                     </div>
                 </div>
-            </div> -->
-            <!-- Pagination-->
+                {% if forloop.counter|divisibleby:2 %}
+                </div>
+                <div class="row">
+                {% endif %}
+                {% endfor %}
+            </div>
             <nav aria-label="Pagination">
                 <hr class="my-0" />
                 <ul class="pagination justify-content-center my-4">
@@ -74,4 +55,7 @@
     </div>
 </div>
 
-{% endblock %}
+{%endblock%}
+
+
+            
