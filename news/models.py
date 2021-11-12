@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 
 class Category(models.Model):
     category_name = models.CharField(unique=True, max_length=250)
+    approve_category = models.BooleanField(default=False)
 
     def __str__(self):
             return self.category_name
@@ -20,7 +21,7 @@ class Article(models.Model):
     image = CloudinaryField("image", default="default_image")
     upvote = models.ManyToManyField(User, blank=True, related_name="news_upvotes")
     downvote = models.ManyToManyField(User, blank=True, related_name="news_downvotes")
-    category_name = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="post_comment")
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, related_name="category_article")
 
     def upvotes_count(self):
         return self.upvote.count()
@@ -32,7 +33,7 @@ class Article(models.Model):
         return self.headline
 
 class Comment(models.Model):
-    post = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="post_comment")
+    article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="article_comment")
     body = models.TextField()
     time_created_comment = models.DateTimeField(auto_now_add=True)
     users_name = models.ForeignKey(User, on_delete=models.CASCADE, related_name="users_name")

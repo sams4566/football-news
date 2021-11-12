@@ -4,7 +4,7 @@ from .forms import ArticleForm, CommentForm, CategoryForm
 from django.contrib.auth.models import User
 
 def display_categories(request):
-    categories = Category.objects.all() 
+    categories = Category.objects.all().filter(approve_category=True)
     context = {
         'categories': categories
     }
@@ -51,9 +51,7 @@ def display_top_articles(request):
     return render(request, 'index.html', context)
 
 def display_articles(request, category_id):
-    category_name = category_id
-    articles = list(Article.objects.all().filter(approved=True, category_name=category_name))
-    print(category_id)
+    articles = list(Article.objects.all().filter(approved=True, category_id=category_id))
     def sort_article(article):
         return article.upvotes_count() - article.downvotes_count()
     articles.sort(key=sort_article, reverse=True)
@@ -68,7 +66,7 @@ def add_article(request):
         if article_form.is_valid():
             article_form.instance.author = request.user
             article_form.save()
-            category_id = article_form.instance.category_name_id
+            category_id = article_form.instance.category_id
             return redirect('display_articles', category_id=category_id)
     article_form = ArticleForm()
     context = {
@@ -97,14 +95,14 @@ def edit_article(request, article_id, *args, **kwargs):
 
 def view_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
-    comments = article.post_comment.order_by('time_created_comment')
+    comments = article.article_comment.order_by('time_created_comment')
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=article)
         if form.is_valid():
             obj = Comment()
             obj.body = form.cleaned_data['body']
             obj.users_name = request.user
-            obj.post = article
+            obj.article = article
             obj.save()
             return redirect('view_article', article_id=article_id)
     form = CommentForm()     
@@ -147,13 +145,13 @@ def downvote_article(request, article_id, *args, **kwargs):
 
 def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    category_id = article.category_name_id
+    category_id = article.category_id
     article.delete()
     return redirect('display_articles', category_id=category_id)
 
 def delete_comment(request, comment_id, *args, **kwargs):
     comment = get_object_or_404(Comment, id=comment_id)
-    article_id = comment.post_id
+    article_id = comment.article_id
     comment.delete()
     return redirect('view_article', article_id=article_id)
 

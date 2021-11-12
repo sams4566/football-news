@@ -3,8 +3,11 @@ from .models import Article, Comment, Category
 
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
-    list_display = ('category_name',)
+    list_display = ('category_name', 'approve_category',)
+    actions = ['approve_selected_categories']
 
+    def approve_selected_categories(self, request, list_of_categories):
+        list_of_categories.update(approve_category=True)
 
 @admin.register(Article)
 class ArticleAdmin(admin.ModelAdmin):
@@ -19,5 +22,5 @@ class ArticleAdmin(admin.ModelAdmin):
 @admin.register(Comment)
 class CommentAdmin(admin.ModelAdmin):
 
-    list_display = ('post',)
-    list_filter = ('post',)
+    list_display = ('article',)
+    list_filter = ('article',)
