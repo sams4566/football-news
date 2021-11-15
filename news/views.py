@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render, get_object_or_404
 from .models import Article, Comment, Category
 from .forms import ArticleForm, CommentForm, CategoryForm
 from django.contrib.auth.models import User
+from django.core.paginator import Paginator
 
 def display_categories(request):
     categories = Category.objects.all().filter(approve_category=True)
@@ -45,28 +46,39 @@ def display_top_articles(request):
     def sort_article(article):
         return article.upvotes_count() - article.downvotes_count()
     articles.sort(key=sort_article, reverse=True)
+    paginator = Paginator(articles, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'articles': articles
+        'articles': articles,
+        'page_obj': page_obj
     }
     return render(request, 'index.html', context)
 
 def display_articles(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
     articles = list(Article.objects.all().filter(approved=True, category_id=category_id))
     def sort_article(article):
         return article.upvotes_count() - article.downvotes_count()
     articles.sort(key=sort_article, reverse=True)
+    paginator = Paginator(articles, 6)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
     context = {
-        'articles': articles
+        'articles': articles,
+        'page_obj': page_obj,
+        'category': category
     }
     return render(request, 'category_articles.html', context)
 
-def add_article(request):
+def add_article(request, category_id):
+    category = get_object_or_404(Category, id=category_id)
     if request.method == 'POST':
         article_form = ArticleForm(request.POST, request.FILES)
         if article_form.is_valid():
             article_form.instance.author = request.user
+            article_form.instance.category = category
             article_form.save()
-            category_id = article_form.instance.category_id
             return redirect('display_articles', category_id=category_id)
     article_form = ArticleForm()
     context = {

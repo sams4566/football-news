@@ -11304,13 +11304,27 @@ textarea.form-control-lg {
   background-size: cover;
 }
 
-.page-container {
-  position: relative;
+.body-container {
   min-height: 100vh;
+  position: relative;
 }
 
 .news-footer {
-  position: absolute;
-  bottom: 0;
   width: 100%;
+  bottom: 0;
+  position: absolute;
 } 
+
+.footer-padding {
+  padding-bottom: 200px;
+}
+
+.page-count {
+  position: relative;
+  display: block;
+  color: var(--bs-body-color);
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #dee2e6;
+  padding: 0.375rem 0.75rem;
+}
