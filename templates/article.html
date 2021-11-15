@@ -2,58 +2,7 @@
 
 {% block content %}
 
-<!-- <h1>Hello</h1>
-<h1>{{ article.author }}</h1>
-<h1>{{ article.headline }}</h1>
-<h1>{{ article.slug }}</h1>
-<h1>{{ article.time_created }}</h1>
-<h1>{{ article.updated_time }}</h1>
-<h1>{{ article.content }}</h1>
-<h1>{{ article.id }}</h1>
-<h1>{{ article.image.url}}</h1>
-<h1>{{ article.image}}</h1> -->
-
-<!-- {% if "default_image" in article.image.url %}
-<img src="https://obamabcn.com/wp-content/uploads/2019/11/logo-premier-league.jpg" width="100%">
-{% else %}
-<img src="{{ article.image.url }}" width="100%">
-{% endif %} -->
-
-<h1>Headline: {{ article.headline }}</h1>
-<h3>Content: {{ article.content }}</h3>
-<h5>Article Author: {{ article.author }}</h5>
-
-{% if "default_image" in article.image.url %}
-<img src="https://obamabcn.com/wp-content/uploads/2019/11/logo-premier-league.jpg" width="10%">
-{% else %}
-<img src="{{ article.image.url }}" width="10%">
-{% endif %}
-
-{% if user.is_authenticated %}
-<form action="{% url 'upvote_article' article.id %}" method="POST">
-    {% csrf_token %}
-    {% if upvoted %}
-    <button><i class="fas fa-arrow-up green"></i></button>
-    {% else %}
-    <button><i class="fas fa-arrow-up"></i></button>
-    {% endif %}
-</form>
-<p>Total votes: {{ vote_count }}</p>
-<p>Upvotes: {{ article.upvotes_count }}</p>
-
-<form action="{% url 'downvote_article' article.id %}" method="POST">
-    {% csrf_token %}
-    {% if downvoted %}
-    <button><i class="fas fa-arrow-down red"></i></button>
-    {% else %}
-    <button><i class="fas fa-arrow-down"></i></button>
-    {% endif %}
-</form>
-<p>Downvotes: {{ article.downvotes_count }}</p>
-{% endif %}
-
-
-{% if user.is_authenticated %}
+<!-- {% if user.is_authenticated %}
 <form method="POST">
     {{ article_comment }}
     {% csrf_token %}
@@ -63,20 +12,92 @@
 </form>
 {% else %}
 <h1>Login to make a new comment</h1>
-{% endif %}
+{% endif %} -->
 
-<div>
-    <h1>Comments</h1>
-    <div>
-        {% for comment in comments %}
-            
-            <p>{{ comment.body }}</p>
-            <p>By: {{ comment.users_name }}</p>
-            {% if user == comment.users_name %}
-            <a class="btn btn-primary" href="/comment/delete/{{ comment.id }}">Delete Comment</a>
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 mx-auto">
+            <!-- Post content-->
+            <article>
+                <!-- Post header-->
+                <header class="mb-4">
+                    <!-- Post title-->
+                    <h1 class="fw-bolder mb-1">Headline: {{ article.headline }}</h1>
+                    <!-- Post meta content-->
+                    <div class="text-muted fst-italic mb-2">Posted on {{ article.time_created }} by {{ article.author }}</div>
+                    <!-- Post categories-->
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Top Stories</a>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Chelsea</a>
+                </header>
+                <!-- Preview image figure-->
+                <figure class="mb-4 col-lg-12">
+                    {% if "default_image" in article.image.url %}
+                    <img src="https://obamabcn.com/wp-content/uploads/2019/11/logo-premier-league.jpg" width="100%">
+                    {% else %}
+                    <img src="{{ article.image.url }}" width="100%">
+                    {% endif %}
+                </figure>
+                <!-- Post content-->
+                <section class="mb-5">
+                    <p>{{ article.content }}</p>
+                </section>
+            </article>
+            {% if user.is_authenticated %}
+            <form action="{% url 'upvote_article' article.id %}" method="POST">
+                {% csrf_token %}
+                {% if upvoted %}
+                <button><i class="fas fa-arrow-up green"></i></button>
+                {% else %}
+                <button><i class="fas fa-arrow-up"></i></button>
+                {% endif %}
+            </form>
+            <p>Total votes: {{ vote_count }}</p>
+            <p>Upvotes: {{ article.upvotes_count }}</p>
+            <p>Downvotes: {{ article.downvotes_count }}</p>
+            <form action="{% url 'downvote_article' article.id %}" method="POST">
+                {% csrf_token %}
+                {% if downvoted %}
+                <button><i class="fas fa-arrow-down red"></i></button>
+                {% else %}
+                <button><i class="fas fa-arrow-down"></i></button>
+                {% endif %}
+            </form>
             {% endif %}
-
-        {% endfor %}
+            <!-- Comments section-->
+            <section class="mb-5">
+                <div class="card bg-light">
+                    <div class="card-body">
+                        <!-- Comment form-->
+                        {% if user.is_authenticated %}
+                        <form class="mb-4" method="POST">
+                            {% csrf_token %}
+                            {{ article_comment }}
+                            <!-- <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!">{{ article_comment }}</textarea> -->
+                            <div>
+                                <button type="submit">Add Comment</button>  
+                            </div>                              
+                        </form>
+                        {% endif %}
+                        <!-- Comment with nested comments-->
+                        {% for comment in comments %}
+                        <div class="d-flex mb-4">
+                            <!-- Parent comment-->
+                            <div class="flex-shrink-0"><img class="rounded-circle" src="https://dummyimage.com/50x50/ced4da/6c757d.jpg" alt="..." /></div>
+                            <div class="ms-3">
+                                <div class="fw-bold">{{ comment.users_name }}</div>
+                                {{ comment.body }}
+                            </div>
+                        </div>
+                        <div>
+                            {% if user == comment.users_name %}
+                            <a class="btn btn-primary" href="/comment/delete/{{ comment.id }}">Delete Comment</a>
+                            {% endif %}
+                        </div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </section>
+        </div>
     </div>
 </div>
 
