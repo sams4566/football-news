@@ -20,6 +20,7 @@ from news import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
+    path('summernote/', include('django_summernote.urls')),
     path('', views.display_top_articles, name='display_top_articles'),
     path('categories', views.display_categories, name='display_categories'),
     path('category/add', views.add_category, name='category'),

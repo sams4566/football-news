@@ -3,6 +3,7 @@ from .models import Article, Comment, Category
 from .forms import ArticleForm, CommentForm, CategoryForm
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.http import HttpResponseRedirect
 
 def display_categories(request):
     categories = Category.objects.all().filter(approve_category=True)
@@ -120,7 +121,7 @@ def view_article(request, article_id, *args, **kwargs):
     form = CommentForm()     
     upvoted = False
     if article.upvote.filter(id=request.user.id).exists():
-        upvoted = True   
+        upvoted = True
     downvoted = False
     if article.downvote.filter(id=request.user.id).exists():
         downvoted = True 
