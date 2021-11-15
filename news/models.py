@@ -14,7 +14,6 @@ class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article")
     headline = models.CharField(unique=True, max_length=250)
     approved = models.BooleanField(default=False)
-    slug = models.SlugField(unique=True, max_length=250)
     time_created = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
     content = models.TextField()
