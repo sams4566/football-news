@@ -5,3 +5,27 @@
 */
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
+
+$(function () {
+    $(".commentList").slice(0, 4).show();
+    $("#loadComments").on('click', function () {
+        $(".commentList:hidden").slice(0, 4).slideDown();
+    });
+});
+
+$(document).ready(function(){
+    $('#summernote').summernote({
+        placeholder: 'Hello stand alone ui',
+        tabsize: 2,
+        height: 120,
+        toolbar: [
+        ['style', ['style']],
+        ['font', ['bold', 'underline', 'clear']],
+        ['color', ['color']],
+        ['para', ['ul', 'ol', 'paragraph']],
+        ['table', ['table']],
+        ['insert', ['link', 'picture', 'video']],
+        ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+});

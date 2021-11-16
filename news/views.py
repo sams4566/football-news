@@ -130,7 +130,6 @@ def view_article(request, article_id, *args, **kwargs):
     downvoted = False
     if article.downvote.filter(id=request.user.id).exists():
         downvoted = True 
-
     vote_count = article.upvote.count() - article.downvote.count()
 
     context = {
