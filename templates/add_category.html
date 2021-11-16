@@ -16,8 +16,8 @@
 
 {% if user.is_authenticated %}
 <form action="{{ news.views.add_category }}" method="POST" enctype="multipart/form-data">
-    {{ form }}
     {% csrf_token %}
+    <div> Category Name: {{ form.category_name }}</div>
     <div>
         <button type="submit">Add Category</button>
     </div>

@@ -16,8 +16,10 @@
 
 {% if user.is_authenticated %}
 <form action="{{ news.views.add_article }}" method="POST" enctype="multipart/form-data">
-    {{ article_form }}
     {% csrf_token %}
+    <div>Headline: {{ article_form.headline }}</div>
+    <div>Image: {{ article_form.image }}</div>
+    <textarea id="summernote" name="editordata"></textarea>
     <div>
         <button type="submit">Add Article</button>
     </div>
@@ -27,3 +29,5 @@
 {% endif %}
 
 {% endblock %}
+
+fields = ('headline', 'content', 'image',)

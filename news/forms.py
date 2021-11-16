@@ -10,7 +10,7 @@ class CategoryForm(forms.ModelForm):
 class ArticleForm(forms.ModelForm):
     class Meta:
         model = Article
-        fields = ('headline', 'content', 'image',)
+        fields = ('headline', 'image',)
 
 class CommentForm(forms.ModelForm):
     class Meta: 

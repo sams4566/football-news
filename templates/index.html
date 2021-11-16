@@ -28,7 +28,7 @@
                             <a class="btn btn-primary" href="/article/view/{{ article.id }}">Read more →</a>
                             {% if user == article.author %}
                             <a class="btn btn-primary" href="/article/delete/{{ article.id }}">Delete Article</a>
-                            <a class="btn btn-primary" href='/article/edit/{{ article.id }}'>Edit Article</a>
+                            <a type="submit" class="btn btn-primary" href='/article/edit/{{ article.id }}' id="editSummernote">Edit Article</a>
                             <p class="card-text text-muted h6"></p>
                             {% endif %}
                         </div>

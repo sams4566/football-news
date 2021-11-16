@@ -79,6 +79,8 @@ def add_article(request, category_id):
         if article_form.is_valid():
             article_form.instance.author = request.user
             article_form.instance.category = category
+            summernote = request.POST.get('editordata')
+            article_form.instance.content = summernote
             article_form.save()
             return redirect('display_articles', category_id=category_id)
     article_form = ArticleForm()
@@ -98,11 +100,14 @@ def edit_article(request, article_id, *args, **kwargs):
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
+            summernote = request.POST.get('editordata')
+            form.instance.content = summernote
             form.save()
             return redirect('view_article', article_id=article_id)
     form = ArticleForm(instance=article)
     context = {
-        'form': form
+        'form': form,
+        'article': article,
     }
     return render(request, 'edit_article.html', context)
 

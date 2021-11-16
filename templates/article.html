@@ -43,7 +43,7 @@
                 </section>
             </article>
             {% if user.is_authenticated %}
-            <form onSubmit="return false;" action="{% url 'upvote_article' article.id %}" method="POST">
+            <form action="{% url 'upvote_article' article.id %}" method="POST">
                 {% csrf_token %}
                 {% if upvoted %}
                 <button><i class="fas fa-arrow-up green"></i></button>

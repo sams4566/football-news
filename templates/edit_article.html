@@ -16,10 +16,12 @@
 
 {% if user.is_authenticated %}
 <form action="{{ news.views.edit_article }}" method="POST" enctype="multipart/form-data">
-    {{ form }}
     {% csrf_token %}
+    <div>Headline: {{ form.headline }}</div>
+    <div>Image: {{ form.image }}</div>
+    <textarea id="summernote" name="editordata"></textarea>
     <div>
-        <button type="submit">Edit Article</button>
+        <button type="submit">Add Article</button>
     </div>
 </form>
 {% else %}
