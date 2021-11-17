@@ -13,6 +13,13 @@ $(function () {
     });
 });
 
+$(function () {
+    $(".categoryList").slice(0, 6).show();
+    $("#loadCategories").on('click', function () {
+        $(".categoryList:hidden").slice(0, 6).slideDown();
+    });
+});
+
 $(document).ready(function(){
     $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',

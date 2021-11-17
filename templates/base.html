@@ -65,7 +65,7 @@
     <script src="{% static 'js/scripts.js' %}"></script>
     <script>
         $(document.getElementById('summernote')).ready(function() {
-            var article_content = '{{ article.content }}';
+            var article_content = '{{ article.content | safe }}';
             $('#summernote').summernote('code', article_content);
         })
     </script>

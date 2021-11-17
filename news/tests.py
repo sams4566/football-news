@@ -14,7 +14,7 @@ class TestCategoryModel(TestCase):
 
 class TestCategoryForm(TestCase):
 
-    def test_category_name_is_needed(self):
+    def test_category_name_must_be_entered(self):
         form = CategoryForm({'category_name': ''})
         self.assertFalse(form.is_valid())
         self.assertEqual(form.errors['category_name'][0], 'This field is required.')

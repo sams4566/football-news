@@ -2,18 +2,6 @@
 
 {% block content %}
 
-<!-- {% if user.is_authenticated %}
-<form method="POST">
-    {{ article_comment }}
-    {% csrf_token %}
-    <div>
-        <button type="submit">Add Comment</button>
-    </div>
-</form>
-{% else %}
-<h1>Login to make a new comment</h1>
-{% endif %} -->
-
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-8 mx-auto">
@@ -31,10 +19,9 @@
                 </header>
                 <!-- Preview image figure-->
                 <figure class="mb-4 col-lg-12">
-                    {% if "default_image" in article.image.url %}
-                    <img src="https://obamabcn.com/wp-content/uploads/2019/11/logo-premier-league.jpg" width="100%">
+                    {% if article.image.url %}
                     {% else %}
-                    <img src="{{ article.image.url }}" width="100%">
+                    <img src="{{ article.image.url }}" width="100%" center center>
                     {% endif %}
                 </figure>
                 <!-- Post content-->
@@ -102,9 +89,6 @@
                 </div>
             </section>
         </div>
-
-        <p class="test1">This is a paragraph.</p>
-        <button class="btn1">Set Text</button>
     </div>
 </div>
 
