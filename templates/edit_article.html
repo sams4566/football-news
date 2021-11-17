@@ -19,7 +19,7 @@
     {% csrf_token %}
     <div>Headline: {{ form.headline }}</div>
     <div>Image: {{ form.image }}</div>
-    <textarea id="summernote" name="editordata"></textarea>
+    <textarea id="summernote" name="editordata">{{ form.content | safe }}</textarea>
     <div>
         <button type="submit">Add Article</button>
     </div>
