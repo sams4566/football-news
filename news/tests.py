@@ -40,3 +40,17 @@ class TestViews(TestCase):
     def test_category_added(self):
         page = self.client.post('/category/add', {'category_name': 'Test String'})
         self.assertRedirects(page, '/categories')
+
+    def test_category_edited(self):
+        category = Category.objects.create(category_name='Test String')
+        page = self.client.post(f'/category/edit/{category.id}', {'category_name': 'Category Name Edited'})
+        self.assertRedirects(page, '/categories')
+        edited_category = Category.objects.get(id=category.id)
+        self.assertEqual(edited_category.category_name, 'Category Name Edited')
+
+    def test_delete_category(self):
+        category = Category.objects.create(category_name='Test String')
+        page = self.client.get(f'/category/delete/{category.id}')
+        self.assertRedirects(page, '/categories')
+        remaining_categories = Category.objects.filter(id=category.id)
+        self.assertFalse(remaining_categories)
