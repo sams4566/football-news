@@ -32,6 +32,12 @@ class Article(models.Model):
     def __str__(self):
         return self.headline
 
+# class Vote(models.Model):
+#     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="article_vote")
+#     time_created_upvote = models.DateTimeField(auto_now_add=True)
+#     upvote = models.ManyToManyField(User, blank=True, related_name="news_upvotes")
+
+
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="article_comment")
     body = models.TextField()

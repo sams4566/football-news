@@ -32,6 +32,7 @@
             {% if user.is_authenticated %}
             <form action="{% url 'upvote_article' article.id %}" method="POST">
                 {% csrf_token %}
+                <!-- {{ vote }} -->
                 {% if upvoted %}
                 <button><i class="fas fa-arrow-up green"></i></button>
                 {% else %}
