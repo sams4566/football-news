@@ -20,6 +20,9 @@
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
     <!-- jquery -->
     <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> -->
+    <script>
+        
+    </script>
     <title>Football News</title>
 </head>
 
@@ -67,7 +70,7 @@
         $(document.getElementById('summernote')).ready(function() {
             var article_content = '{{ article.content | safe }}';
             $('#summernote').summernote('code', article_content);
-        })
+        })    
     </script>
 </body>
 </html>

@@ -7,16 +7,16 @@
 // Use this file to add JavaScript to your project
 
 $(function () {
-    $(".commentList").slice(0, 4).show();
-    $("#loadComments").on('click', function () {
-        $(".commentList:hidden").slice(0, 4).slideDown();
+    $(".comment-list").slice(0, 4).show();
+    $("#load-comments").on('click', function () {
+        $(".comment-list:hidden").slice(0, 4).slideDown();
     });
 });
 
 $(function () {
-    $(".categoryList").slice(0, 6).show();
-    $("#loadCategories").on('click', function () {
-        $(".categoryList:hidden").slice(0, 6).slideDown();
+    $(".category-list").slice(0, 6).show();
+    $("#load-categories").on('click', function () {
+        $(".category-list:hidden").slice(0, 6).slideDown();
     });
 });
 

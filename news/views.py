@@ -55,6 +55,26 @@ def display_top_articles(request):
     }
     return render(request, 'index.html', context)
 
+
+# def display_upvote1(request, article_id):
+#     upvoted = False
+#     if article.upvote.filter(id=request.user.id).exists():
+#         upvoted = True
+#     downvoted = False
+#     if article.downvote.filter(id=request.user.id).exists():
+#         downvoted = True 
+#     vote_count = article.upvote.count() - article.downvote.count()
+
+#     context = {
+#         "upvoted": upvoted,
+#         "downvoted": downvoted,
+#         "vote_count": vote_count,
+#     }
+#     return render(request, 'display_top_articles.html', context)
+
+
+
+
 def display_articles(request, category_id):
     category = get_object_or_404(Category, id=category_id)
     articles = Article.objects.filter(approved=True).order_by('-time_created')
@@ -132,7 +152,7 @@ def view_article(request, article_id, *args, **kwargs):
 
     context = {
         "article": article,
-        "article_comment": form,
+        "form": form,
         "comments": comments,
         "upvoted": upvoted,
         "downvoted": downvoted,
@@ -149,6 +169,7 @@ def upvote_article(request, article_id, *args, **kwargs):
         article.upvote.add(request.user)
         article.downvote.remove(request.user)
     return redirect('view_article', article_id=article_id)
+
 
 def downvote_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
