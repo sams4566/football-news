@@ -12,10 +12,9 @@
                     <!-- Post title-->
                     <h1 class="fw-bolder mb-1">Headline: {{ article.headline }}</h1>
                     <!-- Post meta content-->
-                    <div class="text-muted fst-italic mb-2">Posted on {{ article.time_created }} by {{ article.author }}</div>
+                    <div class="text-muted fst-italic mb-2">Posted on {{ article.time_created|date:"j F, Y, g:i a" }} by {{ article.author }}</div>
                     <!-- Post categories-->
-                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Top Stories</a>
-                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">Chelsea</a>
+                    <a class="badge bg-secondary text-decoration-none link-light" href="#!">{{ category.category_name }}</a>
                 </header>
                 <!-- Preview image figure-->
                 <figure class="mb-4 col-lg-12">
@@ -29,28 +28,37 @@
                     <p>{{ article.content | safe }}</p>
                 </section>
             </article>
-            {% if user.is_authenticated %}
-            <form action="{% url 'upvote_article' article.id %}" method="POST">
-                {% csrf_token %}
-                <!-- {{ vote }} -->
-                {% if upvoted %}
-                <button><i class="fas fa-arrow-up green"></i></button>
-                {% else %}
-                <button><i class="fas fa-arrow-up"></i></button>
-                {% endif %}
-            </form>
-            <p>Total votes: {{ vote_count }}</p>
-            <p>Upvotes: {{ article.upvotes_count }}</p>
-            <p>Downvotes: {{ article.downvotes_count }}</p>
-            <form action="{% url 'downvote_article' article.id %}" method="POST">
-                {% csrf_token %}
-                {% if downvoted %}
-                <button><i class="fas fa-arrow-down red"></i></button>
-                {% else %}
-                <button><i class="fas fa-arrow-down"></i></button>
-                {% endif %}
-            </form>
-            {% endif %}
+
+            <div class="row">
+                <div class="upvote-col">
+                    <form action="{% url 'upvote_article' article.id %}" method="POST" >
+                        {% csrf_token %}
+                        {% if upvoted %}
+                        <button class="text-dark upvote-green"><i class="fas fa-arrow-up"></i></button>
+                        {% else %}
+                        <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="vote-num">
+                    {{ vote_count }}
+                </div>
+                <div class="downvote-col">
+                    <form action="{% url 'downvote_article' article.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if downvoted %}
+                        <button class="text-dark downvote-red"><i class="fas fa-arrow-down"></i></button>
+                        {% else %}
+                        <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
+                        {% endif %}
+                    </form>
+                </div>
+                <div class="col-1">
+                    {% with comments.count as num_of_comments %}
+                    <div class="text-dark"><i class="far fa-comments"></i> {{ num_of_comments }}</div>
+                    {% endwith %}
+                </div>
+            </div>
             <!-- Comments section-->
             <section class="mb-5">
                 <div class="card bg-light">
@@ -68,7 +76,7 @@
                         {% endif %}
                         <!-- Comment with nested comments-->
                         {% for comment in comments %}
-                        <div class="commentList">
+                        <div class="comment-list">
                             <div class="d-flex mb-4">
                                 <!-- Parent comment-->
                                 <div class="flex-shrink-0"><img class="rounded-circle"

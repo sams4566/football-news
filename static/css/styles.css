@@ -11288,14 +11288,6 @@ textarea.form-control-lg {
   }
 }
 
-.green {
-  background-color: green;
-}
-
-.red {
-  background-color: red;
-}
-
 .background-photo {
   background: no-repeat center center; 
   background-image: linear-gradient(rgba(255,255,255,0.8), rgba(255,255,255,0.8)), url("../assets/background.jpg");
@@ -11329,10 +11321,49 @@ textarea.form-control-lg {
   padding: 0.375rem 0.75rem;
 }
 
-.commentList {
+.comment-list {
   display: none;
 }
 
-.categoryList {
+.category-list {
   display: none;
+}
+
+.upvote {
+  border-radius: 20%;
+  background-color: white;
+}
+
+.upvote-green {
+  border-radius: 20%;
+  background-color: green;
+}
+
+.downvote {
+  border-radius: 20%;
+  background-color: white;
+}
+
+.downvote-red {
+  border-radius: 20%;
+  background-color: red;
+}
+
+.upvote-col {
+  flex: 0 0 auto;
+  width: 40px;
+}
+
+.vote-num {
+
+  margin-left: -5px;
+  width: 45px;
+  text-align: center;
+}
+
+.downvote-col {
+  flex: 0 0 auto;
+  margin-left: -15px;
+  width: 50px;
+
 }

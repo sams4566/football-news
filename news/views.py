@@ -109,6 +109,8 @@ def edit_article(request, article_id, *args, **kwargs):
 
 def view_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
+    category_id = article.category_id
+    category = get_object_or_404(Category, id=category_id)
     comments = article.article_comment.order_by('time_created_comment')
     if request.method == 'POST':
         form = CommentForm(request.POST, instance=article)
@@ -135,7 +137,7 @@ def view_article(request, article_id, *args, **kwargs):
         "upvoted": upvoted,
         "downvoted": downvoted,
         "vote_count": vote_count,
-        "date_time": date_time
+        "category": category,
     }
     return render(request, 'article.html', context)
 
