@@ -135,6 +135,7 @@ def view_article(request, article_id, *args, **kwargs):
         "upvoted": upvoted,
         "downvoted": downvoted,
         "vote_count": vote_count,
+        "date_time": date_time
     }
     return render(request, 'article.html', context)
 
