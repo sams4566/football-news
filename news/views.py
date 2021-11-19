@@ -3,7 +3,6 @@ from .models import Article, Comment, Category
 from .forms import ArticleForm, CommentForm, CategoryForm
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from django.http import HttpResponseRedirect
 
 def display_categories(request):
     categories = Category.objects.all().filter(approve_category=True)
@@ -58,10 +57,7 @@ def display_top_articles(request):
 
 def display_articles(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    articles = list(Article.objects.all().filter(approved=True, category_id=category_id))
-    def sort_article(article):
-        return article.upvotes_count() - article.downvotes_count()
-    articles.sort(key=sort_article, reverse=True)
+    articles = Article.objects.filter(approved=True).order_by('-time_created')
     paginator = Paginator(articles, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -111,73 +107,6 @@ def edit_article(request, article_id, *args, **kwargs):
     }
     return render(request, 'edit_article.html', context)
 
-# def view_article(request, article_id, *args, **kwargs):
-#     article = get_object_or_404(Article, id=article_id)
-#     # vote = article.article_vote.all()
-#     comments = article.article_comment.order_by('time_created_comment')
-#     # comments1 = article.article_comment.order_by('time_created_comment')
-#     print(article.article_comment.filter(id=request.user.id).id)
-#     if request.method == 'POST':
-#         form = CommentForm(request.POST, instance=article)
-#         if form.is_valid():
-#             obj = Comment()
-#             obj.body = form.cleaned_data['body']
-#             obj.users_name = request.user
-#             obj.article = article
-#             obj.save()
-#             return redirect('view_article', article_id=article_id)
-#     form = CommentForm()   
-#     vote = VoteForm()  
-#     # upvoted = False
-#     # if article.article_vote.filter(id=request.user.id).upvote.exists():
-#     #     upvoted = True
-#     # downvoted = False
-#     # if article.downvote.filter(id=request.user.id).exists():
-#     #     downvoted = True 
-#     # vote_count = article.upvote.count() - article.downvote.count()
-
-#     context = {
-#         "article": article,
-#         "article_comment": form,
-#         "comments": comments,
-#         # "vote": vote,
-#         # "upvoted": upvoted,
-#         # "downvoted": downvoted,
-#         # "vote_count": vote_count,
-#     }
-#     return render(request, 'article.html', context)
-
-def upvote_article(request, article_id, *args, **kwargs):
-    article = get_object_or_404(Article, id=article_id)
-    if article.upvote.filter(id=request.user.id).exists():
-        article.upvote.remove(request.user)
-    else:
-        article.upvote.add(request.user)
-        article.downvote.remove(request.user)
-    return redirect('view_article', article_id=article_id)
-
-def downvote_article(request, article_id, *args, **kwargs):
-    article = get_object_or_404(Article, id=article_id)
-    if article.downvote.filter(id=request.user.id).exists():
-        article.downvote.remove(request.user)
-    else:
-        article.downvote.add(request.user)
-        article.upvote.remove(request.user)
-    return redirect('view_article', article_id=article_id)
-
-def delete_article(request, article_id):
-    article = get_object_or_404(Article, id=article_id)
-    category_id = article.category_id
-    article.delete()
-    return redirect('display_articles', category_id=category_id)
-
-def delete_comment(request, comment_id, *args, **kwargs):
-    comment = get_object_or_404(Comment, id=comment_id)
-    article_id = comment.article_id
-    comment.delete()
-    return redirect('view_article', article_id=article_id)
-
-
 def view_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
     comments = article.article_comment.order_by('time_created_comment')
@@ -225,4 +154,16 @@ def downvote_article(request, article_id, *args, **kwargs):
     else:
         article.downvote.add(request.user)
         article.upvote.remove(request.user)
+    return redirect('view_article', article_id=article_id)
+
+def delete_article(request, article_id):
+    article = get_object_or_404(Article, id=article_id)
+    category_id = article.category_id
+    article.delete()
+    return redirect('display_articles', category_id=category_id)
+
+def delete_comment(request, comment_id, *args, **kwargs):
+    comment = get_object_or_404(Comment, id=comment_id)
+    article_id = comment.article_id
+    comment.delete()
     return redirect('view_article', article_id=article_id)
