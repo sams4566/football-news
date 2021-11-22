@@ -6,7 +6,9 @@
         <div class="container">
             <div class="text-center my-5">
                 <h1 class="fw-bolder">{{ category.category_name }}</h1>
+                {% if user.is_authenticated %}
                 <a class="btn btn-primary" href="/article/add/{{ category.id }}">Add Article</a>
+                {% endif %}
             </div>
         </div>
 </header>

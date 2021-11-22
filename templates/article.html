@@ -17,7 +17,7 @@
                     <!-- Post categories-->
                     <div class="row">
                         <a class="badge bg-secondary text-decoration-none link-light category-badge mx-auto"
-                        href="#!">{{ category.category_name }}</a>
+                        href="/category/articles/{{ category.id }}">{{ category.category_name }}</a>
                     </div>
                 </header>
                 <!-- Preview image figure-->
@@ -84,9 +84,9 @@
                 <div class="card bg-light">
                     <div class="card-body">
                         <!-- Comment form-->
-                        {% if user.is_authenticated %}
                         <div class="row">
                             <div class="col-7 card-body">
+                                <h2>Comments:</h2>
                                 {% for comment in comments %}
                                 <div class="comment-list">
                                     <div class="mb-2 ms-1">
@@ -112,6 +112,7 @@
                                 </div>
                                 {% endif %}
                             </div>
+                            {% if user.is_authenticated %}
                             <div class="col-5 pe-4 card-body">
                                 <div class="mb-4 mt-3">
                                     <form class="mb-4" method="POST">
@@ -126,8 +127,8 @@
                                     </form>
                                 </div>
                             </div>
+                            {% endif %}
                         </div>
-                        {% endif %}
                         <!-- Comment with nested comments-->
                     </div>
                 </div>

@@ -7,6 +7,7 @@ import datetime
 class Category(models.Model):
     category_name = models.CharField(unique=True, max_length=250)
     approve_category = models.BooleanField(default=False)
+    category_author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="category_author")
 
     def __str__(self):
             return self.category_name
