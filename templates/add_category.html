@@ -3,27 +3,22 @@
 
 {% block content %}
 
-<!-- <form action="add" method="POST">
-    {% csrf_token %}
-    <div>
-        <label for="article_name"></label>
-        <input type="text" id="article_name" name="article_name">
+<div class="container">
+    <div class="row pt-3">
+        <h1 class="center-text">Add Category</h1>
     </div>
-    <div>
-        <button type="submit">Add Article</button>
-    </div>
-</form> -->
+    <div class="row mx-auto">
+        <div class="col-4 offset-4 pt-2">
 
-{% if user.is_authenticated %}
-<form action="{{ news.views.add_category }}" method="POST" enctype="multipart/form-data">
-    {% csrf_token %}
-    <div> Category Name: {{ form.category_name }}</div>
-    <div>
-        <button type="submit">Add Category</button>
+            <form action="{{ news.views.add_category }}" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <div> Category Name: {{ form.category_name }}</div>
+                <div class="row pt-3">
+                    <button class="btn btn-primary content-width mx-auto" type="submit">Add Category</button>
+                </div>
+            </form>
+        </div>
     </div>
-</form>
-{% else %}
-<h1>Login to make a new category</h1>
-{% endif %}
+</div>
 
 {% endblock %}
