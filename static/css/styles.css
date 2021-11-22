@@ -11339,10 +11339,10 @@ textarea.form-control-lg {
   background-color: green;
 }
 
-.upvote-col {
+/* .upvote-col {
   flex: 0 0 auto;
   width: 40px;
-}
+} */
 
 .upvote-col1 {
   flex: 0 0 auto;
@@ -11362,11 +11362,11 @@ textarea.form-control-lg {
   background-color: red;
 }
 
-.downvote-col {
+/* .downvote-col {
   flex: 0 0 auto;
   margin-left: -15px;
   width: 50px;
-}
+} */
 
 .downvote-col1 {
   flex: 0 0 auto;
@@ -11403,4 +11403,12 @@ textarea.form-control-lg {
 .category-badge {
   width: max-content;
   margin-right: auto;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.content-width {
+  width: max-content;
 }

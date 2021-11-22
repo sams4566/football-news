@@ -3,14 +3,12 @@
 {% block content %}
 
 <header class="py-5 bg-light border-bottom mb-4 background-photo">
-    <div >
         <div class="container">
             <div class="text-center my-5">
-                <p class="lead mb-0">{{ category.category_name }}</p>
+                <h1 class="fw-bolder">{{ category.category_name }}</h1>
                 <a class="btn btn-primary" href="/article/add/{{ category.id }}">Add Article</a>
             </div>
         </div>
-    </div>
 </header>
 
 

@@ -19,13 +19,10 @@
                 <div class="col-lg-6 category-list">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title">{{ category.category_name }}</h2>
-                            <a class="btn btn-primary" href="/category/article/{{ category.id }}">Read more →</a>
-                            {% if user == article.author %}
-                            <a class="btn btn-primary" href="/category/delete/{{ category.id }}">Delete Article</a>
-                            <a class="btn btn-primary" href='/category/edit/{{ category.id }}'>Edit Article</a>
-                            <p class="card-text text-muted h6"></p>
-                            {% endif %}
+                            <h2 class="card-title center-text">{{ category.category_name }}</h2>
+                            <a class="btn btn-primary" href="/category/article/{{ category.id }}">Read more</a>
+                            <a class="btn btn-info" href='/category/edit/{{ category.id }}'>Edit Category</a>
+                            <a class="btn btn-danger" href="/category/delete/{{ category.id }}">Delete Category</a>
                         </div>
                     </div>
                 </div>
@@ -35,7 +32,9 @@
                 {% endif %}
                 {% endfor %}
             </div>
-            <button id="load-categories">More Category</button>
+            <div class="row">
+                <button id="load-categories" class="btn btn-primary">More Categories</button>
+            </div>
         </div>
     </div>
 </div>
