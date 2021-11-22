@@ -21,12 +21,16 @@
                 <div class="col-lg-6 category-list">
                     <div class="card mb-4">
                         <div class="card-body">
-                            <h2 class="card-title center-text">{{ category.category_name }}</h2>
-                            <a class="btn btn-primary" href="/category/articles/{{ category.id }}">Read more</a>
-                            {% if user == category.category_author %}
-                            <a class="btn btn-info" href='/category/edit/{{ category.id }}'>Edit Category</a>
-                            <a class="btn btn-danger" href="/category/delete/{{ category.id }}">Delete Category</a>
-                            {% endif %}
+                            <div class="row">
+                                <h2 class="card-title center-text">{{ category.category_name }}</h2>
+                            </div>
+                            <div class="row">
+                                <a class="btn btn-primary" href="/category/articles/{{ category.id }}">Read more</a>
+                                {% if user == category.category_author %}
+                                <a class="btn btn-info" href='/category/edit/{{ category.id }}'>Edit Category</a>
+                                <a class="btn btn-danger" href="/category/delete/{{ category.id }}">Delete Category</a>
+                                {% endif %}
+                            </div>
                         </div>
                     </div>
                 </div>
