@@ -20,7 +20,11 @@
             {% for article in page_obj %}
                 <div class="col-lg-6">
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="../static/assets/lion-logo.jpg" alt="..." /></a>
+                        {% if "default_image" in article.image.url %}
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="../static/assets/lion-logo.jpg" alt="..." width="100%"/></a>
+                        {% else %}
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}" alt="..." width="10%" cover/></a>
+                        {% endif %}
                         <div class="card-body">
                             <div class="row">
                                 <div class="col-1 border-right">
