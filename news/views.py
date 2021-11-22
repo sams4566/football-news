@@ -129,6 +129,7 @@ def edit_article(request, article_id, *args, **kwargs):
 
 def view_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
+    print(f'hello {article.user_upvoted}')
     category_id = article.category_id
     category = get_object_or_404(Category, id=category_id)
     comments = article.article_comment.order_by('time_created_comment')
@@ -163,12 +164,22 @@ def view_article(request, article_id, *args, **kwargs):
 
 def upvote_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
+    print(f'{article.upvote.filter(id=request.user.id).exists()} hello {article.user_upvoted}')
     if article.upvote.filter(id=request.user.id).exists():
         article.upvote.remove(request.user)
     else:
         article.upvote.add(request.user)
         article.downvote.remove(request.user)
     return redirect('view_article', article_id=article_id)
+
+def upvote_article2(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    if article.upvote.filter(id=request.user.id).exists():
+        article.upvote.remove(request.user)
+    else:
+        article.upvote.add(request.user)
+        article.downvote.remove(request.user)
+    return redirect('display_top_articles')
 
 
 def downvote_article(request, article_id, *args, **kwargs):
@@ -179,6 +190,15 @@ def downvote_article(request, article_id, *args, **kwargs):
         article.downvote.add(request.user)
         article.upvote.remove(request.user)
     return redirect('view_article', article_id=article_id)
+
+def downvote_article2(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    if article.downvote.filter(id=request.user.id).exists():
+        article.downvote.remove(request.user)
+    else:
+        article.downvote.add(request.user)
+        article.upvote.remove(request.user)
+    return redirect('display_top_articles')
 
 def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)

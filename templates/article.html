@@ -16,7 +16,7 @@
                         {{ article.author }}</div>
                     <!-- Post categories-->
                     <div class="row">
-                        <a class="badge bg-secondary text-decoration-none link-light category-badge"
+                        <a class="badge bg-secondary text-decoration-none link-light category-badge mx-auto"
                         href="#!">{{ category.category_name }}</a>
                     </div>
                 </header>
@@ -105,9 +105,9 @@
                                         <!-- <div class="comment-box">Comment: {{ form.body }}</div> -->
                                         <!-- <textarea class="form-control" rows="3" placeholder="Join the discussion and leave a comment!">{{ article_comment }}</textarea> -->
                                         <textarea name="body" cols="50" rows="5" required="" id="id_body"
-                                            class="comment-box"></textarea>
+                                            class="comment-box form-control"></textarea>
                                         <div>
-                                            <button class="mt-2 ml-5" type="submit">Add Comment</button>
+                                            <button class="mt-2 ml-5 btn btn-primary" type="submit">Add Comment</button>
                                         </div>
                                     </form>
                                 </div>

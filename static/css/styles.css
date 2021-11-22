@@ -11401,6 +11401,6 @@ textarea.form-control-lg {
 }
 
 .category-badge {
-  width: 10%;
+  width: max-content;
   margin-right: auto;
 }

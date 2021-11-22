@@ -26,9 +26,9 @@
                                 <div class="col-1 border-right">
                                     <div class="row">
                                         <div class="upvote-col1">
-                                            <form action="{% url 'upvote_article' article.id %}" method="POST" >
+                                            <form action="{% url 'upvote_article2' article.id %}" method="POST" >
                                                 {% csrf_token %}
-                                                {% if upvoted %}
+                                                {% if article.user_upvoted %}
                                                 <button class="text-dark upvote-green"><i class="fas fa-arrow-up"></i></button>
                                                 {% else %}
                                                 <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
@@ -38,13 +38,13 @@
                                     </div>
                                     <div class="row">
                                         <div class="vote-num1 vote-count">
-                                            <!-- {{ vote_count }} -->
-                                            -99
+                                            {{ article.votes_count }}
+                                            <!-- -99 -->
                                         </div>
                                     </div>
                                     <div class="row">
                                         <div class="downvote-col1">
-                                            <form action="{% url 'downvote_article' article.id %}" method="POST">
+                                            <form action="{% url 'downvote_article2' article.id %}" method="POST">
                                                 {% csrf_token %}
                                                 {% if downvoted %}
                                                 <button class="text-dark downvote-red"><i class="fas fa-arrow-down"></i></button>

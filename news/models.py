@@ -29,6 +29,12 @@ class Article(models.Model):
 
     def downvotes_count(self):
         return self.downvote.count()
+
+    def votes_count(self):
+        return self.upvote.count() - self.downvote.count()
+
+    def user_upvoted(self, user):
+        return self.upvote.filter(user=user).exists()
         
     def __str__(self):
         return self.headline
