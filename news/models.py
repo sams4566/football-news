@@ -5,7 +5,7 @@ import datetime
 
 
 class Category(models.Model):
-    category_name = models.CharField(unique=True, max_length=250)
+    category_name = models.CharField(max_length=250)
     approve_category = models.BooleanField(default=False)
     category_author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="category_author")
 
@@ -14,7 +14,7 @@ class Category(models.Model):
 
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article")
-    headline = models.CharField(unique=True, max_length=250)
+    headline = models.CharField(max_length=250)
     extract = models.TextField(max_length=100)
     approved = models.BooleanField(default=False)
     time_created = models.DateTimeField(auto_now_add=True)

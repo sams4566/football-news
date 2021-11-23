@@ -13,16 +13,25 @@ def display_categories(request):
     return render(request, 'categories.html', context)
 
 def add_category(request):
+    categories = list(Category.objects.all())
+    form = CategoryForm()
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
             form.instance.category_author = request.user
+            for category in categories:
+                name = form.instance.category_name
+                if category.category_name == name:
+                    messages.add_message(request, messages.INFO, 'A category with the same name already exists.')
+                    context = {
+                        "form": form
+                    }
+                    return render(request, 'add_category.html', context)
             form.save()
             messages.add_message(request, messages.INFO, 'Your category is awaiting approval')
             return redirect('display_categories')
-    form = CategoryForm()
     context = {
-        "form": CategoryForm()
+        "form": form
     }
     return render(request, 'add_category.html', context)
 
