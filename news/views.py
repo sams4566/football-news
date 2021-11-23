@@ -37,12 +37,21 @@ def add_category(request):
 
 def edit_category(request, category_id, *args, **kwargs):
     category = get_object_or_404(Category, id=category_id)
+    categories = list(Category.objects.all())
+    form = CategoryForm(instance=category)
     if request.method == 'POST':
         form = CategoryForm(request.POST, instance=category)
         if form.is_valid():
+            for category in categories:
+                name = form.instance.category_name
+                if category.category_name == name:
+                    messages.add_message(request, messages.INFO, 'A category with the same name already exists.')
+                    context = {
+                        "form": form
+                    }
+                    return render(request, 'edit_category.html', context)
             form.save()
             return redirect('display_categories')
-    form = CategoryForm(instance=category)
     context = {
         'form': form
     }
@@ -82,33 +91,51 @@ def display_articles(request, category_id):
 
 def add_article(request, category_id):
     category = get_object_or_404(Category, id=category_id)
+    articles = list(Article.objects.all())
+    form = ArticleForm()
     if request.method == 'POST':
-        article_form = ArticleForm(request.POST, request.FILES)
-        if article_form.is_valid():
-            article_form.instance.author = request.user
-            article_form.instance.category = category
+        form = ArticleForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.instance.author = request.user
+            form.instance.category = category
             summernote = request.POST.get('editordata')
-            article_form.instance.content = summernote
-            article_form.save()
+            form.instance.content = summernote
+            for article in articles:
+                name = form.instance.headline
+                if article.headline == name:
+                    messages.add_message(request, messages.INFO, 'An article with the same headline already exists.')
+                    context = {
+                        "form": form
+                    }
+                    return render(request, 'add_article.html', context)
+            form.save()
             messages.add_message(request, messages.INFO, 'Your article is awaiting approval')
             return redirect('display_articles', category_id=category_id)
-    article_form = ArticleForm()
     context = {
-        "article_form": ArticleForm()
+        "form": form
     }
     return render(request, 'add_article.html', context)
 
 
 def edit_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
+    articles = list(Article.objects.all())
+    form = ArticleForm(instance=article)
     if request.method == 'POST':
         form = ArticleForm(request.POST, request.FILES, instance=article)
         if form.is_valid():
             summernote = request.POST.get('editordata')
             form.instance.content = summernote
+            for article in articles:
+                name = form.instance.headline
+                if article.headline == name:
+                    messages.add_message(request, messages.INFO, 'An article with the same headline already exists.')
+                    context = {
+                        "form": form
+                    }
+                    return render(request, 'edit_article.html', context)
             form.save()
             return redirect('view_article', article_id=article_id)
-    form = ArticleForm(instance=article)
     context = {
         'form': form,
         'article': article,
