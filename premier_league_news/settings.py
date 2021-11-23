@@ -34,14 +34,14 @@ SECRET_KEY = os.environ.get('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['premier_league_news1.herokuapp.com', 'localhost']
+ALLOWED_HOSTS = ['premier-league-news1.herokuapp.com', 'localhost']
 
 # DEBUG = development 
 
 # if development:
 #     ALLOWED_HOSTS = ['localhost']
 # else:
-#     ALLOWED_HOSTS = [os.environ.get('premier_league_news1.herokuapp.com')]
+#     ALLOWED_HOSTS = [os.environ.get('premier-league-news1.herokuapp.com')]
 
 
 # Application definition
