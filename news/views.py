@@ -58,29 +58,9 @@ def display_top_articles(request):
     }
     return render(request, 'index.html', context)
 
-
-# def display_upvote1(request, article_id):
-#     upvoted = False
-#     if article.upvote.filter(id=request.user.id).exists():
-#         upvoted = True
-#     downvoted = False
-#     if article.downvote.filter(id=request.user.id).exists():
-#         downvoted = True 
-#     vote_count = article.upvote.count() - article.downvote.count()
-
-#     context = {
-#         "upvoted": upvoted,
-#         "downvoted": downvoted,
-#         "vote_count": vote_count,
-#     }
-#     return render(request, 'display_top_articles.html', context)
-
-
-
-
 def display_articles(request, category_id):
     category = get_object_or_404(Category, id=category_id)
-    articles = Article.objects.filter(approved=True).order_by('-time_created')
+    articles = Article.objects.filter(approved=True, category_id=category_id).order_by('-time_created')
     paginator = Paginator(articles, 6)
     page_number = request.GET.get('page')
     page_obj = paginator.get_page(page_number)
@@ -109,11 +89,6 @@ def add_article(request, category_id):
     }
     return render(request, 'add_article.html', context)
 
-    # if request.method == 'POST':
-    #     name = request.POST.get('article_name')
-    #     Article.objects.create(name=name)
-    #     return redirect('display_articles')
-    # return render(request, 'add_article.html')
 
 def edit_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
@@ -185,6 +160,16 @@ def upvote_article2(request, article_id, *args, **kwargs):
         article.downvote.remove(request.user)
     return redirect('display_top_articles')
 
+def upvote_article3(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    category_id = article.category_id
+    if article.upvote.filter(id=request.user.id).exists():
+        article.upvote.remove(request.user)
+    else:
+        article.upvote.add(request.user)
+        article.downvote.remove(request.user)
+    return redirect('display_articles', category_id=category_id)
+
 
 def downvote_article(request, article_id, *args, **kwargs):
     article = get_object_or_404(Article, id=article_id)
@@ -203,6 +188,16 @@ def downvote_article2(request, article_id, *args, **kwargs):
         article.downvote.add(request.user)
         article.upvote.remove(request.user)
     return redirect('display_top_articles')
+
+def downvote_article3(request, article_id, *args, **kwargs):
+    article = get_object_or_404(Article, id=article_id)
+    category_id = article.category_id
+    if article.downvote.filter(id=request.user.id).exists():
+        article.downvote.remove(request.user)
+    else:
+        article.downvote.add(request.user)
+        article.upvote.remove(request.user)
+    return redirect('display_articles', category_id=category_id)
 
 def delete_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)

@@ -26,29 +26,64 @@
 
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 mx-auto">
+        <div class="col-lg-10 mx-auto">
             <div class="row">
-                {% for article in page_obj %}
+
+            {% for article in page_obj %}
                 <div class="col-lg-6">
                     <div class="card mb-4">
-                        <a href="#!"><img class="card-img-top" src="/static/assets/lion-logo.jpg"
-                                alt="..." /></a>
+                        {% if "default_image" in article.image.url %}
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="/static/assets/lion-logo.jpg" alt="..." width="100%"/></a>
+                        {% else %}
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}" alt="..." width="10%" cover/></a>
+                        {% endif %}
                         <div class="card-body">
-                            <div class="small text-muted">{{ article.time_created|date:"j F, Y, g:i a" }}</div>
-                            <h2 class="card-title">{{ article.headline }}</h2>
-                            <p class="card-text">{{ article.extract }}</p>
-                            <a class="btn btn-primary" href="/article/view/{{ article.id }}">Read more →</a>
-                            {% if user == article.author %}
-                            <a class="btn btn-primary" href="/article/delete/{{ article.id }}">Delete Article</a>
-                            <a class="btn btn-primary" href='/article/edit/{{ article.id }}' id="editSummernote">Edit Article</a>
-                            <p class="card-text text-muted h6"></p>
-                            {% endif %}
+                            <div class="row">
+                                <div class="col-1">
+                                    <div class="row">
+                                        <div class="upvote-col1">
+                                            <form action="{% url 'upvote_article3' article.id %}" method="POST" >
+                                                {% csrf_token %}
+                                                {% if user.id in article.upvote %}
+                                                <button class="text-dark upvote-green"><i class="fas fa-arrow-up"></i></button>
+                                                {% else %}
+                                                <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
+                                                {% endif %}
+                                            </form>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="vote-num1 vote-count">
+                                            {{ article.votes_count }}
+                                            <!-- -99 -->
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="downvote-col1">
+                                            <form action="{% url 'downvote_article3' article.id %}" method="POST">
+                                                {% csrf_token %}
+                                                {% if downvoted %}
+                                                <button class="text-dark downvote-red"><i class="fas fa-arrow-down"></i></button>
+                                                {% else %}
+                                                <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
+                                                {% endif %}
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-11">
+                                    <div class="small text-muted">{{ article.time_created|date:"j F, Y, g:i a" }}</div>
+                                    <h2 class="card-title">{{ article.headline }}</h2>
+                                    <p class="card-text">{{ article.extract }}</p>
+                                    <a class="btn btn-primary" href="/article/view/{{ article.id }}">Read more →</a>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {% if forloop.counter|divisibleby:2 %}
-            </div>
-            <div class="row">
+                </div>
+                <div class="row">
                 {% endif %}
                 {% endfor %}
             </div>

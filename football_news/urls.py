@@ -32,8 +32,10 @@ urlpatterns = [
     path('article/view/<article_id>', views.view_article, name='view_article'),
     path('article/upvote/<article_id>', views.upvote_article, name='upvote_article'),
     path('article/upvote2/<article_id>', views.upvote_article2, name='upvote_article2'),
+    path('article/upvote3/<article_id>', views.upvote_article3, name='upvote_article3'),
     path('article/downvote/<article_id>', views.downvote_article, name='downvote_article'),
     path('article/downvote2/<article_id>', views.downvote_article2, name='downvote_article2'),
+    path('article/downvote3/<article_id>', views.downvote_article3, name='downvote_article3'),
     path('article/delete/<article_id>', views.delete_article, name='delete_article'),
     path('comment/delete/<comment_id>', views.delete_comment, name='delete_comment'),
 ]
