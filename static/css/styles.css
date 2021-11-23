@@ -11339,19 +11339,6 @@ textarea.form-control-lg {
   background-color: green;
 }
 
-/* .upvote-col {
-  flex: 0 0 auto;
-  width: 40px;
-} */
-
-.upvote-col1 {
-  flex: 0 0 auto;
-  width: 40px;
-  margin-left: -15%;
-  position: relative;
-  margin-bottom: 20%;
-}
-
 .downvote {
   border-radius: 20%;
   background-color: white;
@@ -11360,44 +11347,6 @@ textarea.form-control-lg {
 .downvote-red {
   border-radius: 20%;
   background-color: red;
-}
-
-/* .downvote-col {
-  flex: 0 0 auto;
-  margin-left: -15px;
-  width: 50px;
-} */
-
-.downvote-col1 {
-  flex: 0 0 auto;
-  width: 40px;
-  margin-left: -15%;
-  position: relative;
-  margin-top: 20%;
-}
-
-.vote-num {
-  margin-left: -5px;
-  width: 45px;
-  text-align: center;
-}
-
-.vote-num1 {
-  width: 100px;
-  text-align: center;
-  padding: 0;
-  margin-left: 10%;
-  position: relative;
-}
-
-.border-right {
-  border-right: 2px solid;
-  border-color: grey;
-}
-
-.comment-box {
-  margin-left: 100px;
-  float: right;
 }
 
 .category-badge {

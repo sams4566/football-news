@@ -15,8 +15,8 @@
             </div>
         </div>
         <div class="text-center my-5">
-            <h1 class="fw-bolder">Welcome to Football News!</h1>
-            <p class="lead mb-0">Top Stories:</p>
+            <h1 class="fw-bolder">Welcome to Premier League News!</h1>
+            <h2 class="fw-bolder">Top Stories:</h2>
         </div>
     </div>
 </header>
@@ -39,7 +39,7 @@
                             <div class="row">
                                 <div class="col-1">
                                     <div class="row">
-                                        <div class="upvote-col1">
+                                        <div class="col-12">
                                             <form action="{% url 'upvote_article2' article.id %}" method="POST" >
                                                 {% csrf_token %}
                                                 {% if user.id in article.upvote %}
@@ -51,13 +51,13 @@
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="vote-num1 vote-count">
+                                        <div class="col-12 vote-count">
                                             {{ article.votes_count }}
                                             <!-- -99 -->
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="downvote-col1">
+                                        <div class="col-12">
                                             <form action="{% url 'downvote_article2' article.id %}" method="POST">
                                                 {% csrf_token %}
                                                 {% if downvoted %}
