@@ -36,3 +36,9 @@ $(document).ready(function(){
         ]
     });
 });
+
+setTimeout(function() {
+    let info = document.getElementById("msg");
+    let notification = new bootstrap.Alert(info);
+    notification.close();
+}, 2500);

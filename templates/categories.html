@@ -4,6 +4,16 @@
 
 <header class="py-5 bg-light border-bottom mb-4 background-photo">
     <div class="container">
+        <div class="row p-0 m-0">
+            <div class="col-6 offset-3">
+                {% for message in messages %}
+                <div role="alert" id="msg" class="alert alert-dismissible fade show {{ message.tags }}">
+                    {{ message | safe }}
+                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
         <div class="text-center my-5">
             <h1 class="fw-bolder">Categories</h1>
             {% if user.is_authenticated %}

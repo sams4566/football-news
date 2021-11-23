@@ -3,6 +3,7 @@ from .models import Article, Comment, Category
 from .forms import ArticleForm, CommentForm, CategoryForm
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
+from django.contrib import messages
 
 def display_categories(request):
     categories = Category.objects.all().filter(approve_category=True)
@@ -17,6 +18,7 @@ def add_category(request):
         if form.is_valid():
             form.instance.category_author = request.user
             form.save()
+            messages.add_message(request, messages.INFO, 'Your category is awaiting approval')
             return redirect('display_categories')
     form = CategoryForm()
     context = {
@@ -99,6 +101,7 @@ def add_article(request, category_id):
             summernote = request.POST.get('editordata')
             article_form.instance.content = summernote
             article_form.save()
+            messages.add_message(request, messages.INFO, 'Your article is awaiting approval')
             return redirect('display_articles', category_id=category_id)
     article_form = ArticleForm()
     context = {

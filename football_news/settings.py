@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import dj_database_url
+from django.contrib.messages import constants as messages
 import os
 
 if os.path.isfile('env.py'):
@@ -66,6 +67,14 @@ SITE_ID = 1
 
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
+
+MESSAGE_TAGS = {
+    messages.ERROR: 'alert-danger',
+    messages.WARNING: 'alert-warning',
+    messages.INFO: 'alert-info',
+    messages.DEBUG: 'alert-info',
+    messages.SUCCESS: 'alert-success',
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
