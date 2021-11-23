@@ -1,5 +1,5 @@
 """
-ASGI config for football_news project.
+ASGI config for premier_league_news project.
 
 It exposes the ASGI callable as a module-level variable named ``application``.
 
