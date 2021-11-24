@@ -18,11 +18,11 @@ import os
 if os.path.isfile('env.py'):
     import env
 
-development = os.environ.get('DEVELOPMENT', True)
+development = os.environ.get('DEVELOPMENT', False)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
+# TEMPLATES_DIR = os.path.join(BASE_DIR, 'templates')
 
 
 # Quick-start development settings - unsuitable for production
@@ -43,6 +43,9 @@ if development:
 else:
     ALLOWED_HOSTS = [os.environ.get('premier-league-news1.herokuapp.com')]
 
+# DEBUG = 'DEVELOPMENT' in os.environ
+
+# ALLOWED_HOSTS = ['premier-league-news1.herokuapp.com', 'localhost']
 
 # Application definition
 
@@ -91,7 +94,7 @@ ROOT_URLCONF = 'premier_league_news.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [TEMPLATES_DIR],
+        'DIRS': [], # TEMPLATES_DIR
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -122,6 +125,19 @@ else:
     DATABASES = {
         'default': dj_database_url.parse(os.environ.get('DATABASE_URL'))
     }
+
+# if os.environ.get("DATABASE_URL"):
+#     DATABASES = {
+#         "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
+#     }
+# else:
+#     DATABASES = {
+#         "default": {
+#             "ENGINE": "django.db.backends.sqlite3",
+#             "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+#         }
+#     }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
