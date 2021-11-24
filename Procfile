@@ -1,1 +1,1 @@
-web: gunicorn premier_league_news.wsgi
+web: gunicorn premier_league_news.wsgi:application
