@@ -41,13 +41,6 @@ class TestViews(TestCase):
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'edit_category.html')
 
-    def test_category_added(self):
-        user = User.objects.create(username='Bria')
-        category = Category.objects.create(category_name='Test Strin', category_author=user)
-        # page = self.client.post('/category/add', {'category_name': 'Test Strin', 'category_author': user, 'approve_category': True})
-        page = self.client.post('/category/add', {'category': category,})
-        self.assertRedirects(page, '/categories')
-
     def test_category_edited(self):
         user = User.objects.create(username='Brian')
         category = Category.objects.create(category_name='Test String', category_author=user)

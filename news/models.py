@@ -34,14 +34,14 @@ class Article(models.Model):
     def votes_count(self):
         return self.upvote.count() - self.downvote.count()
 
-    def user_upvoted(self, user):
-        return self.upvote.filter(user=user).exists()
+    def upvote_user(self):
+        return [upvote.id for upvote in self.upvote.all()]
+
+    def downvote_user(self):
+        return [downvote.id for downvote in self.downvote.all()]
         
     def __str__(self):
         return self.headline
-
-    def upvote_userid(self):
-        return [upvote.id for upvote in self.upvote.all()]
 
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="article_comment")

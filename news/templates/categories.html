@@ -50,9 +50,11 @@
                 {% endif %}
                 {% endfor %}
             </div>
+            {% if categories.count > 6 %}
             <div class="row">
                 <button id="load-categories" class="btn btn-primary">More Categories</button>
             </div>
+            {% endif %}
         </div>
     </div>
 </div>

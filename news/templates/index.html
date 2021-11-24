@@ -42,7 +42,7 @@
                                         <div class="col-12">
                                             <form action="{% url 'upvote_article2' article.id %}" method="POST" >
                                                 {% csrf_token %}
-                                                {% if user.id in article.upvote_userid %}
+                                                {% if user.id in article.upvote_user %}
                                                 <button class="text-dark upvote-green"><i class="fas fa-arrow-up"></i></button>
                                                 {% else %}
                                                 <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
@@ -53,8 +53,6 @@
                                     <div class="row">
                                         <div class="col-12 vote-count">
                                             {{ article.votes_count }}
-                                            <span>{{ user.id }}</span>
-                                            <span>{{ article.upvote_userid }}</span>
                                             <!-- -99 -->
                                         </div>
                                     </div>
@@ -62,7 +60,7 @@
                                         <div class="col-12">
                                             <form action="{% url 'downvote_article2' article.id %}" method="POST">
                                                 {% csrf_token %}
-                                                {% if downvoted %}
+                                                {% if user.id in article.downvote_user %}
                                                 <button class="text-dark downvote-red"><i class="fas fa-arrow-down"></i></button>
                                                 {% else %}
                                                 <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
