@@ -34,7 +34,7 @@ SECRET_KEY = os.environ.get('SECRET_KEY', '')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['premier-league-news1.herokuapp.com']
+ALLOWED_HOSTS = [os.environ.get('HEROKU_HOSTNAME')]
 # ALLOWED_HOSTS = ['premier-league-news1.herokuapp.com', 'localhost']
 
 # DEBUG = development 
@@ -124,7 +124,7 @@ WSGI_APPLICATION = 'premier_league_news.wsgi.application'
 
 # else:
 DATABASES = {
-    'default': dj_database_url.parse('postgres://delsnqejnxrbbj:0dda84fed5f05f74154e545f2de19d7bd5a9af14e0d53bf47ea65a764acc5425@ec2-34-241-19-183.eu-west-1.compute.amazonaws.com:5432/d899662mr7m4pu')
+    'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
 
 # if os.environ.get("DATABASE_URL"):
