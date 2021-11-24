@@ -37,6 +37,7 @@ def add_category(request):
 
 def edit_category(request, category_id):
     category = get_object_or_404(Category, id=category_id)
+    print(category.category_author)
     categories = list(Category.objects.all())
     form = CategoryForm(instance=category)
     if request.method == 'POST':
@@ -144,7 +145,6 @@ def edit_article(request, article_id):
 
 def view_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    print(f'hello {article.user_upvoted}')
     category_id = article.category_id
     category = get_object_or_404(Category, id=category_id)
     comments = article.article_comment.order_by('time_created_comment')
@@ -179,7 +179,6 @@ def view_article(request, article_id):
 
 def upvote_article(request, article_id):
     article = get_object_or_404(Article, id=article_id)
-    print(f'{article.upvote.filter(id=request.user.id).exists()} hello {article.user_upvoted}')
     if article.upvote.filter(id=request.user.id).exists():
         article.upvote.remove(request.user)
     else:

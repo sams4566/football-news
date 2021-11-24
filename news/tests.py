@@ -1,15 +1,18 @@
 from django.test import TestCase
 from .models import Category
 from .forms import CategoryForm
+from django.contrib.auth.models import User
 
 class TestCategoryModel(TestCase):
 
     def test_category_string_gives_back_category_name(self):
-        category = Category.objects.create(category_name='Test String')
+        user = User.objects.create(username='Brian')
+        category = Category.objects.create(category_name='Test String', category_author=user)
         self.assertEqual(str(category), 'Test String')
 
     def test_approve_category_set_to_false(self):
-        category = Category.objects.create(category_name='Test String')
+        user = User.objects.create(username='Brian')
+        category = Category.objects.create(category_name='Test String', category_author=user)
         self.assertFalse(category.approve_category)
 
 class TestCategoryForm(TestCase):
@@ -32,24 +35,30 @@ class TestViews(TestCase):
         self.assertTemplateUsed(page, 'add_category.html')
 
     def test_retrieve_edit_category_html(self):
-        category = Category.objects.create(category_name='Test String')
+        user = User.objects.create(username='Brian')
+        category = Category.objects.create(category_name='Test String', category_author=user)
         page = self.client.get(f'/category/edit/{category.id}')
         self.assertEqual(page.status_code, 200)
         self.assertTemplateUsed(page, 'edit_category.html')
 
     def test_category_added(self):
-        page = self.client.post('/category/add', {'category_name': 'Test String'})
+        user = User.objects.create(username='Bria')
+        category = Category.objects.create(category_name='Test Strin', category_author=user)
+        # page = self.client.post('/category/add', {'category_name': 'Test Strin', 'category_author': user, 'approve_category': True})
+        page = self.client.post('/category/add', {'category': category,})
         self.assertRedirects(page, '/categories')
 
     def test_category_edited(self):
-        category = Category.objects.create(category_name='Test String')
+        user = User.objects.create(username='Brian')
+        category = Category.objects.create(category_name='Test String', category_author=user)
         page = self.client.post(f'/category/edit/{category.id}', {'category_name': 'Category Name Edited'})
         self.assertRedirects(page, '/categories')
         edited_category = Category.objects.get(id=category.id)
         self.assertEqual(edited_category.category_name, 'Category Name Edited')
 
     def test_delete_category(self):
-        category = Category.objects.create(category_name='Test String')
+        user = User.objects.create(username='Brian')
+        category = Category.objects.create(category_name='Test String', category_author=user)
         page = self.client.get(f'/category/delete/{category.id}')
         self.assertRedirects(page, '/categories')
         remaining_categories = Category.objects.filter(id=category.id)
