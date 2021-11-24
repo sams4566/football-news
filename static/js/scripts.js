@@ -20,6 +20,8 @@ $(function () {
     $(".category-list").slice(0, 6).show();
     $("#load-categories").on('click', function () {
         $(".category-list:hidden").slice(0, 6).slideDown();
+        if ($(".category-list:hidden").length == 0) {
+            $("#load-categories").hide()
     });
 });
 
