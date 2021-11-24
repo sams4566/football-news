@@ -40,6 +40,9 @@ class Article(models.Model):
     def __str__(self):
         return self.headline
 
+    def upvote_userid(self):
+        return [upvote.id for upvote in self.upvote.all()]
+
 class Comment(models.Model):
     article = models.ForeignKey(Article, on_delete=models.CASCADE, related_name="article_comment")
     body = models.TextField()

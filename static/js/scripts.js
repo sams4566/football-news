@@ -10,6 +10,9 @@ $(function () {
     $(".comment-list").slice(0, 4).show();
     $("#load-comments").on('click', function () {
         $(".comment-list:hidden").slice(0, 4).slideDown();
+        if ($(".comment-list:hidden").length == 0) {
+            $("#load-comments").hide()
+        }
     });
 });
 
