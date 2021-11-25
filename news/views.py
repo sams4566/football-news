@@ -127,14 +127,6 @@ def edit_article(request, article_id):
         if form.is_valid():
             summernote = request.POST.get('editordata')
             form.instance.content = summernote
-            for article in articles:
-                name = form.instance.headline
-                if article.headline == name:
-                    messages.add_message(request, messages.INFO, 'An article with the same headline already exists.')
-                    context = {
-                        "form": form
-                    }
-                    return render(request, 'edit_article.html', context)
             form.save()
             return redirect('view_article', article_id=article_id)
     context = {
