@@ -18,12 +18,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer" />
     <!-- summernote css -->
     <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
-    <!-- Bootstrap core JS-->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- summernote javascript -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <!-- Core theme JS-->
+    <!-- bootstraps css -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
@@ -61,50 +56,14 @@
     <footer class="py-5 bg-dark news-footer">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Premier League News 2021</p></div>
     </footer>
+    <!-- Bootstrap core JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- summernote javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+    <!-- javascript -->
+    <script src="{% static 'js/script.js' %}"></script>
     <script>
-        $(function () {
-            $(".comment-list").slice(0, 4).show();
-            $("#load-comments").on('click', function () {
-                $(".comment-list:hidden").slice(0, 4).slideDown();
-                if ($(".comment-list:hidden").length == 0) {
-                    $("#load-comments").hide()
-                }
-            });
-        });
-
-        $(function () {
-            $(".category-list").slice(0, 6).show();
-            $("#load-categories").on('click', function () {
-                $(".category-list:hidden").slice(0, 6).slideDown();
-                if ($(".category-list:hidden").length == 0) {
-                    $("#load-categories").hide()
-                }
-            });
-        });
-
-        $(document).ready(function(){
-            $('#summernote').summernote({
-                placeholder: 'Hello stand alone ui',
-                tabsize: 2,
-                height: 120,
-                toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['color', ['color']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['table', ['table']],
-                ['insert', ['link', 'picture', 'video']],
-                ['view', ['fullscreen', 'codeview', 'help']]
-                ]
-            });
-        });
-
-        setTimeout(function() {
-            let info = document.getElementById("msg");
-            let notification = new bootstrap.Alert(info);
-            notification.close();
-        }, 2500);
-
         $(document.getElementById('summernote')).ready(function() {
             var article_content = '{{ article.content | safe }}';
             $('#summernote').summernote('code', article_content);
