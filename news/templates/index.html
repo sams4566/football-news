@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 
 <header class="py-5 bg-light border-bottom mb-4 background-photo">
     <div class="container">
@@ -31,7 +32,7 @@
                 <div class="col-lg-6">
                     <div class="card mb-4">
                         {% if "default_image" in article.image.url %}
-                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="../static/assets/lion-logo.jpg" alt="..." width="100%"/></a>
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{% static 'assets/lion-logo.jpg' %}" alt="..." width="100%"/></a>
                         {% else %}
                         <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}" alt="..." width="10%" cover/></a>
                         {% endif %}
