@@ -17,6 +17,9 @@ from django.contrib import admin
 from django.urls import include, path
 from news import views
 
+from django.conf import settings
+from django.conf.urls.static import static
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
@@ -38,4 +41,4 @@ urlpatterns = [
     path('article/downvote3/<article_id>', views.downvote_article3, name='downvote_article3'),
     path('article/delete/<article_id>', views.delete_article, name='delete_article'),
     path('comment/delete/<comment_id>', views.delete_comment, name='delete_comment'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
