@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 
-<header class="py-5 bg-light border-bottom mb-4 background-photo">
+<header class="py-5 bg-light border-bottom mb-4 background-photo" style="background-image: linear-gradient(rgba(255,255,255,0.8), 
+    rgba(255,255,255,0.8)), url({% static 'assets/background.jpg' %});">
     <div class="container">
         <div class="row p-0 m-0">
             <div class="col-6 offset-3">
@@ -35,7 +37,7 @@
                                 <h2 class="card-title center-text">{{ category.category_name }}</h2>
                             </div>
                             <div class="row">
-                                <a class="btn btn-primary" href="/category/articles/{{ category.id }}">Read more</a>
+                                <a class="btn btn-primary" href="/category/articles/{{ category.id }}">View Articles</a>
                                 {% if user == category.category_author %}
                                 <a class="btn btn-info" href='/category/edit/{{ category.id }}'>Edit Category</a>
                                 <a class="btn btn-danger" href="/category/delete/{{ category.id }}">Delete Category</a>

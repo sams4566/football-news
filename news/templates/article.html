@@ -23,15 +23,13 @@
                 <!-- Preview image figure-->
                 {% if "default_image" not in article.image.url %}
                 <div class="row">
-                    <div class="col-lg-2"></div>
-                    <div class="col-lg-8">
+                    <div class="col-lg-8 offset-2">
                         <figure class="mb-4 col-lg-12">
                             <div class="ml-5">
-                                <img class="mr-5" src="{{ article.image.url }}" width="100%" center center>
+                                <img class="mr-5 article-image" src="{{ article.image.url }}" center center>
                             </div>
                         </figure>
                     </div>
-                    <div class="col-lg-2"></div>
                 </div>
                 {% endif %}
                 <!-- Post content-->

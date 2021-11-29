@@ -3,23 +3,24 @@
 {% block content %}
 {% load static %}
 
-<header class="py-5 bg-light border-bottom mb-4 background-photo">
-    <div class="container">
-        <div class="row">
-            <div class="col-6 offset-3">
-                {% for message in messages %}
-                <div role="alert" id="msg" class="alert alert-dismissible fade show {{ message.tags }}">
-                    {{ message | safe }}
-                    <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+<header class="py-5 bg-light border-bottom mb-4 background-photo" style="background-image: linear-gradient(rgba(255,255,255,0.8), 
+    rgba(255,255,255,0.8)), url({% static 'assets/background.jpg' %});">
+        <div class="container">
+            <div class="row">
+                <div class="col-6 offset-3">
+                    {% for message in messages %}
+                    <div role="alert" id="msg" class="alert alert-dismissible fade show {{ message.tags }}">
+                        {{ message | safe }}
+                        <button class="btn-close" type="button" data-bs-dismiss="alert"></button>
+                    </div>
+                    {% endfor %}
                 </div>
-                {% endfor %}
+            </div>
+            <div class="text-center my-5">
+                <h1 class="fw-bolder">Welcome to Premier League News!</h1>
+                <h2 class="fw-bolder">Top Stories:</h2>
             </div>
         </div>
-        <div class="text-center my-5">
-            <h1 class="fw-bolder">Welcome to Premier League News!</h1>
-            <h2 class="fw-bolder">Top Stories:</h2>
-        </div>
-    </div>
 </header>
 
 
@@ -32,9 +33,9 @@
                 <div class="col-lg-6">
                     <div class="card mb-4">
                         {% if "default_image" in article.image.url %}
-                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{% static 'assets/lion-logo.jpg' %}" alt="..." width="100%"/></a>
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{% static 'assets/lion-logo.jpg' %}"/></a>
                         {% else %}
-                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}" alt="..." width="10%" cover/></a>
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}"/></a>
                         {% endif %}
                         <div class="card-body">
                             <div class="row">

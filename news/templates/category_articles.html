@@ -1,8 +1,10 @@
 {% extends "base.html" %}
 
 {% block content %}
+{% load static %}
 
-<header class="py-5 bg-light border-bottom mb-4 background-photo">
+<header class="py-5 bg-light border-bottom mb-4 background-photo" style="background-image: linear-gradient(rgba(255,255,255,0.8), 
+    rgba(255,255,255,0.8)), url({% static 'assets/background.jpg' %});">
         <div class="container">
             <div class="row p-0 m-0">
                 <div class="col-6 offset-3">
@@ -33,9 +35,9 @@
                 <div class="col-lg-6">
                     <div class="card mb-4">
                         {% if "default_image" in article.image.url %}
-                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="/static/assets/lion-logo.jpg" alt="..." width="100%"/></a>
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{% static 'assets/lion-logo.jpg' %}"/></a>
                         {% else %}
-                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}" alt="..." width="10%" cover/></a>
+                        <a href="/article/view/{{ article.id }}"><img class="card-img-top" src="{{ article.image.url }}"/></a>
                         {% endif %}
                         <div class="card-body">
                             <div class="row">
@@ -100,7 +102,7 @@
 
                     {% if page_obj.has_next %}
                     <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
-                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo</a></li>
+                    <li class="page-item"><a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last &raquo;</a></li>
                     {% endif %}
                 </ul>
             </nav>
