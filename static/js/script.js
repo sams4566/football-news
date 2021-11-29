@@ -6,12 +6,14 @@
 // This file is intentionally blank
 // Use this file to add JavaScript to your project
 
+/*jshint esversion: 6 */
+
 $(function () {
     $(".comment-list").slice(0, 4).show();
     $("#load-comments").on('click', function () {
         $(".comment-list:hidden").slice(0, 4).slideDown();
         if ($(".comment-list:hidden").length == 0) {
-            $("#load-comments").hide()
+            $("#load-comments").hide();
         }
     });
 });
@@ -21,7 +23,7 @@ $(function () {
     $("#load-categories").on('click', function () {
         $(".category-list:hidden").slice(0, 6).slideDown();
         if ($(".category-list:hidden").length == 0) {
-            $("#load-categories").hide()
+            $("#load-categories").hide();
         }
     });
 });
