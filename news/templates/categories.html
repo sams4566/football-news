@@ -31,16 +31,16 @@
             <div class="row">
                 {% for category in categories %}
                 <div class="col-lg-6 category-list">
-                    <div class="card mb-4">
+                    <div class="card mb-4 border-dark">
                         <div class="card-body">
                             <div class="row">
                                 <h2 class="card-title center-text">{{ category.category_name }}</h2>
                             </div>
                             <div class="row">
-                                <a class="btn btn-primary" href="/category/articles/{{ category.id }}">View Articles</a>
+                                <a class="btn btn-primary col-8 offset-2 mb-1" href="/category/articles/{{ category.id }}">View Articles</a>
                                 {% if user == category.category_author %}
-                                <a class="btn btn-info" href='/category/edit/{{ category.id }}'>Edit Category</a>
-                                <a class="btn btn-danger" href="/category/delete/{{ category.id }}">Delete Category</a>
+                                <a class="btn btn-info col-8 offset-2 mb-1" href='/category/edit/{{ category.id }}'>Edit Category</a>
+                                <a class="btn btn-danger col-8 offset-2" href="/category/delete/{{ category.id }}">Delete Category</a>
                                 {% endif %}
                             </div>
                         </div>

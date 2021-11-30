@@ -14,7 +14,7 @@ class Category(models.Model):
 
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article")
-    headline = models.CharField(max_length=250)
+    headline = models.CharField(max_length=50)
     summary = models.TextField(max_length=150)
     approved = models.BooleanField(default=False)
     time_created = models.DateTimeField(auto_now_add=True)

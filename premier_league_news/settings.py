@@ -153,6 +153,9 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Authentication - To prevent the user having to verify email
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/

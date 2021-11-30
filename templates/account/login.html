@@ -17,14 +17,30 @@
     </p>
   </div>
   <div class="row mx-auto">
-    <div class="col-4 offset-4">
+    <div class="col-12 col-md-4 offset-md-4">
       <form class="login" method="POST" action="{% url 'account_login' %}">
         {% csrf_token %}
-        {{ form.as_p }}
+        <div class="row">
+          <label for="id_login">Username:</label>
+        </div>
+        <div class="row pb-2">
+          <input type="text" name="login" placeholder="Username" autocomplete="username" maxlength="150" required=""
+            id="id_login">
+        </div>
+        <div class="row">
+          <label for="id_password">Password:</label>
+        </div>
+        <div class="row pb-2">
+          <input type="password" name="password" placeholder="Password" autocomplete="current-password" required=""
+            id="id_password">
+        </div>
+        <label for="id_remember">Remember Me:</label>
+        <input type="checkbox" name="remember" id="id_remember">
+        <!-- {{ form.as_p }} -->
         {% if redirect_field_value %}
         <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
         {% endif %}
-        <div class="row">
+        <div class="row pt-3">
           <button class="primaryAction btn btn-primary content-width mx-auto"
             type="submit">{% trans "Sign In" %}</button>
         </div>
