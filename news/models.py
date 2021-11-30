@@ -15,12 +15,11 @@ class Category(models.Model):
 class Article(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="news_article")
     headline = models.CharField(max_length=250)
-    extract = models.TextField(max_length=100)
+    summary = models.TextField(max_length=150)
     approved = models.BooleanField(default=False)
     time_created = models.DateTimeField(auto_now_add=True)
     updated_time = models.DateTimeField(auto_now=True)
     content = models.TextField()
-    # image = models.ImageField(upload_to='images', default="default_image")
     image = CloudinaryField("image", default="default_image")
     upvote = models.ManyToManyField(User, blank=True, related_name="news_upvotes")
     downvote = models.ManyToManyField(User, blank=True, related_name="news_downvotes")

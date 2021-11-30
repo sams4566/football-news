@@ -42,6 +42,7 @@
                 <div class="col-2">
                     <div class="row">
                         <div class="col-5">
+                            {% if user.is_authenticated %}
                             <form action="{% url 'upvote_article' article.id %}" method="POST">
                                 {% csrf_token %}
                                 {% if upvoted %}
@@ -50,11 +51,15 @@
                                 <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
                                 {% endif %}
                             </form>
+                            {% else %}
+                            <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
+                            {% endif %}
                         </div>
                         <div class="col-2 mx-auto">
                             {{ vote_count }}
                         </div>
                         <div class="col-5">
+                            {% if user.is_authenticated %}
                             <form action="{% url 'downvote_article' article.id %}" method="POST">
                                 {% csrf_token %}
                                 {% if downvoted %}
@@ -63,6 +68,9 @@
                                 <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
                                 {% endif %}
                             </form>
+                            {% else %}
+                            <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
+                            {% endif %}
                         </div>
                     </div>
                 </div>

@@ -41,7 +41,8 @@
                             <div class="row">
                                 <div class="col-1">
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 p-1">
+                                            {% if user.is_authenticated %}
                                             <form action="{% url 'upvote_article2' article.id %}" method="POST" >
                                                 {% csrf_token %}
                                                 {% if user.id in article.upvote_user %}
@@ -50,16 +51,20 @@
                                                 <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
                                                 {% endif %}
                                             </form>
+                                            {% else %}
+                                            <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
+                                            {% endif %}
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12 vote-count">
-                                            {{ article.votes_count }}
-                                            <!-- -99 -->
+                                        <div class="col-12 vote-count p-1 center-text">
+                                            <!-- {{ article.votes_count }} -->
+                                            -99
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12">
+                                        <div class="col-12 p-1">
+                                            {% if user.is_authenticated %}
                                             <form action="{% url 'downvote_article2' article.id %}" method="POST">
                                                 {% csrf_token %}
                                                 {% if user.id in article.downvote_user %}
@@ -68,14 +73,17 @@
                                                 <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
                                                 {% endif %}
                                             </form>
+                                            {% else %}
+                                            <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
+                                            {% endif %}
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-11">
                                     <div class="small text-muted">{{ article.time_created|date:"j F, Y, g:i a" }}</div>
                                     <h2 class="card-title">{{ article.headline }}</h2>
-                                    <p class="card-text">{{ article.extract }}</p>
-                                    <a class="btn btn-primary" href="/article/view/{{ article.id }}">Read more →</a>
+                                    <p class="card-text">{{ article.summary }}</p>
+                                    <a class="btn btn-primary" href="/article/view/{{ article.id }}">View Article</a>
                                 </div>
                             </div>
                         </div>

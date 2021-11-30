@@ -3,6 +3,7 @@
 
 {% block content %}
 
+
 <div class="container">
     <div class="row">
         <div class="col-6 offset-3 pt-3">
@@ -18,19 +19,22 @@
         <h1 class="center-text">Edit Article</h1>
     </div>
     <div class="row mx-auto">
-        <div class="col-8 offset-2">
+        <div class="col-12 col-md-8 offset-md-2">
             <form action="{{ news.views.edit_article }}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
-                <div class="row pt-3">Headline: {{ form.headline }}</div>
-                <div class="row pt-3">Extract: {{ form.extract }}</div>
-                <div class="row pt-3 pb-3">
-                    <div class="col-1">
-                        Image:
-                    </div>
-                    <div class="col-4">
+                <div class="row pt-3">Headline:</div>
+                <div class="row">{{ form.headline }}</div>
+                <div class="row pt-3">Summary:</div>
+                <div class="row">
+                    <textarea name="summary" cols="40" rows="10" maxlength="150" required="" id="id_summary" class="article-summary""></textarea>
+                </div>
+                <div class="row pt-3">Image:</div>
+                <div class="row pt-0 pb-3 ps-0 me-0">
+                    <div>
                         {{ form.image }}
                     </div>
                 </div>
+                <div class="row pt-3">Article Content:</div>
                 <div class="row">
                     <textarea id="summernote" name="editordata"></textarea>
                 </div>
@@ -42,5 +46,6 @@
         </div>
     </div>
 </div>
+
 
 {% endblock %}
