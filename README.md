@@ -43,6 +43,10 @@ Below are three of the epics I had throughout the project:
 
 ![Story points](https://github.com/sams4566/)
 
+- The user stories were also documented throughout the project using the 'Issues' tab in the github repository. Below is a screenshot of the table used:
+
+![User Stories Table](https://github.com/sams4566/)
+
 ## Data Model
 ### Schema
   - The below database diagram shows the breakdown of my database which helped me to work out the layout of the site and how to structure my python functions.

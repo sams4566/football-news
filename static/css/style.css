@@ -89,7 +89,7 @@
 }
 
 .article-downvote {
-  width: 0;
+  width: 50px;
 }
 
 .article-vote-count {
@@ -97,7 +97,8 @@
 }
 
 .article-comment-count {
-  width: 150px;
+  width: 100px;
+  position: relative;
 }
 
 /* add_article.html */
