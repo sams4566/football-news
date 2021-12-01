@@ -5,9 +5,10 @@ The Premier League News site allows users to easily interact with up to date new
 ![Am I Responsive Mockup](https://github.com/sams4566/)
 
 ## User stories__
-- __Epics__
 
-Epic 1: Create articles
+### Epics
+
+#### Epic 1: Create articles
   - User Story 1: Create article 
     - Task 1: Create article model in model.py
     - Task 2: Add function for add article
@@ -19,7 +20,7 @@ Epic 1: Create articles
     - Task 1: Create function that selects an individual article and displays all the information stored in the data model
     - Task 2: Edit html to ensure the information is displayed in the correct place
 
-Epic 2: Create Categories
+#### Epic 2: Create Categories
   - User Story 1: Change category 
     - Task 1: Create data model and link it to the Article model
     - Task 2: Create form to allow the user to submit a new category
@@ -27,7 +28,7 @@ Epic 2: Create Categories
     - Task 1: Create function for editing the category which prepopulates the existing data
     - Task 2: Create delete categories function
 
-Epic 3: Create Comment
+#### Epic 3: Create Comment
   - User Story 1: Comment on an article 
     - Task 1: Create comment model that is linked to the Article model
     - Task 2: Create a form that allows users to comment on an individual article
@@ -35,20 +36,20 @@ Epic 3: Create Comment
     - Task 1: Add to the view article function an iteration that displays existing comments 
     - Task 2: Create function that allows users to delete their comments
 
-- __Story points__
+### Story points
 Below is a diagram that shows the user stories for the projects timebox and breaks down the number of story points allocated to each:
 
 ![Story points](https://github.com/sams4566/)
 
 ## Data Model
-- __Schema__
+### Schema
   - The below database diagram shows the breakdown of my database which helped me to work out the layout of the site and how to structure my python functions.
   - The flow from category to article to comment meant that the functions I created had a logical flow making it easier for those trying to decipher the code.
   - For the database I used ‘postgres’ on Heroku and for the local host ‘sqlite3’.
 
 ![Schema](https://github.com/sams4566/)
 
-- __Site layout__
+### Site layout
 - __Theme__
 
   - To work out the layout of the site I researched lots of different bootstraps themes and looked at many news and blog websites such as BBC News and Reddit.
@@ -60,7 +61,7 @@ Below is a diagram that shows the user stories for the projects timebox and brea
 - __Icons__
   - I used font awesome for some of the icons as they appear as text rather than an image which limits the icon from being altered at different screen sizes
 
- - __Text field__
+- __Text field__
   - I used the summernote API to allow users to add in any content they like to their articles including pictures and videos. Summernote also gives users control of the spacing and layout compared with the original django provided text content box.
 
 - __Images__
@@ -135,6 +136,7 @@ Below is a diagram that shows the user stories for the projects timebox and brea
   - CSS - CSS was used to style the html elements and make the site more appealing to user. It was also used to allow the website to respond to different screen sizes.
   - JavaScript - I used JavaScript to enhance some of the front end functionality.
   - Python - I used python as the main back end language. It was used to write all of the different functions that occur when requested by the user.
+
 ### Extensions
   - Django - The site was built using the Django full-stack framework where I used many of the built in shortcuts and variables to create the websites backend. Out of the django extensions I used both the AllAuth and Coverage. AllAuth was used to confirm authentications with users on the site and Coverage was used to find out how much of the back end code I had automatically tested.
   - Summernote - I used the summernote API to allow users to insert customised content,  including pictures and videos, to their articles. 
@@ -148,17 +150,17 @@ Below is a diagram that shows the user stories for the projects timebox and brea
 ### Bugs
 #### Solved Bugs 
 
-- __Bug 1__
+##### Bug 1
   - Both my css and javascript were not appearing on Heroku when it was deployed and the below error message was appearing in the console:
 
 `Refused to apply style from 'https://premier-league-news1.herokuapp.com/static/css/style.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.`
 
   - The bug was resolved by setting Debug to false and for adding {% static %} tags to the css and javascript links in my html.
 
-- __Bug 2__
+##### Bug 2
   - The footer wasn’t sticking to the bottom of the page which was impacting on the user experience. To fix this I created a new class for the footer and added bottom: 0 and  position: absolute.
 
-- __Bug 3__
+##### Bug 3
   - Summernote was adding in all the html tags to my article content when I tried to edit the article. This was resolved by adding ‘| safe‘ to the javascript function.
 
 #### Unfixed Bugs
@@ -196,11 +198,11 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
 
 ### Security
 
-Authentication - I used the Django’s AllAuth package to ensure users have to login to make edits to the site. I have also made sure that users can only edit their own articles and categories.
+ - Authentication - I used the Django’s AllAuth package to ensure users have to login to make edits to the site. I have also made sure that users can only edit their own articles and categories.
 
-Environment Variables - I stored private information in the env.py file which was then added into the .gitignore file. This meant that any information in the env.py file was not committed to the repository.
+ - Environment Variables - I stored private information in the env.py file which was then added into the .gitignore file. This meant that any information in the env.py file was not committed to the repository.
 
-Debug - When the site is in production on Heroku debug is set to false ensuring the user doesn’t get information about why certain urls aren’t working.
+ - Debug - When the site is in production on Heroku debug is set to false ensuring the user doesn’t get information about why certain urls aren’t working.
 
 ### Validators
 
