@@ -42,7 +42,3 @@ urlpatterns = [
     path('article/delete/<article_id>', views.delete_article, name='delete_article'),
     path('comment/delete/<comment_id>', views.delete_comment, name='delete_comment'),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
-
-
-# + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-

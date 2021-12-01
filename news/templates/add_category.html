@@ -4,6 +4,7 @@
 {% block content %}
 
 <div class="container">
+    <!-- Message alerts for authentication, articles awaiting approval and errors -->
     <div class="row">
         <div class="col-6 offset-3 pt-3">
             {% for message in messages %}
@@ -14,14 +15,16 @@
             {% endfor %}
         </div>
     </div>
+    <!-- Title -->
     <div class="row pt-3">
         <h1 class="center-text">Add Category</h1>
     </div>
+    <!-- Category details to add -->
     <div class="row mx-auto">
         <div class="col-md-4 offset-md-4 col-12">
-
             <form action="{{ news.views.add_category }}" method="POST" enctype="multipart/form-data">
                 {% csrf_token %}
+                <!-- Category name -->
                 <div class="row">Category Name:</div>
                 <div class="row">{{ form.category_name }}</div>
                 <div class="row pt-4">

@@ -7,12 +7,18 @@ from django.contrib import messages
 
 
 def display_categories(request):
+    """
+    Displays the list of categories stored in the Categories model 
+    when the 'Categories option is selected from the navbar.
+    """
     categories = Category.objects.all().filter(approve_category=True)
     context = {"categories": categories}
     return render(request, "categories.html", context)
 
 
 def add_category(request):
+    """
+    """
     categories = list(Category.objects.all())
     form = CategoryForm()
     if request.method == "POST":
@@ -39,6 +45,8 @@ def add_category(request):
 
 
 def edit_category(request, category_id):
+    """
+    """
     category = get_object_or_404(Category, id=category_id)
     print(category.category_author)
     categories = list(Category.objects.all())
@@ -63,17 +71,19 @@ def edit_category(request, category_id):
 
 
 def delete_category(request, category_id):
+    """
+    """
     category = get_object_or_404(Category, id=category_id)
     category.delete()
     return redirect("display_categories")
 
 
 def display_top_articles(request):
+    """
+    """
     articles = list(Article.objects.all().filter(approved=True))
-
     def sort_article(article):
         return article.upvotes_count() - article.downvotes_count()
-
     articles.sort(key=sort_article, reverse=True)
     paginator = Paginator(articles, 6)
     page_number = request.GET.get("page")
@@ -83,6 +93,8 @@ def display_top_articles(request):
 
 
 def display_articles(request, category_id):
+    """
+    """
     category = get_object_or_404(Category, id=category_id)
     articles = Article.objects.filter(
         approved=True, category_id=category_id
@@ -99,6 +111,8 @@ def display_articles(request, category_id):
 
 
 def add_article(request, category_id):
+    """
+    """
     category = get_object_or_404(Category, id=category_id)
     articles = list(Article.objects.all())
     form = ArticleForm()
@@ -129,6 +143,8 @@ def add_article(request, category_id):
 
 
 def edit_article(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     articles = list(Article.objects.all())
     form = ArticleForm(instance=article)
@@ -147,6 +163,8 @@ def edit_article(request, article_id):
 
 
 def view_article(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     category_id = article.category_id
     category = get_object_or_404(Category, id=category_id)
@@ -182,6 +200,8 @@ def view_article(request, article_id):
 
 
 def upvote_article(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     if article.upvote.filter(id=request.user.id).exists():
         article.upvote.remove(request.user)
@@ -192,6 +212,8 @@ def upvote_article(request, article_id):
 
 
 def upvote_article2(request, article_id, *args, **kwargs):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     if article.upvote.filter(id=request.user.id).exists():
         article.upvote.remove(request.user)
@@ -202,6 +224,8 @@ def upvote_article2(request, article_id, *args, **kwargs):
 
 
 def upvote_article3(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     category_id = article.category_id
     if article.upvote.filter(id=request.user.id).exists():
@@ -213,6 +237,8 @@ def upvote_article3(request, article_id):
 
 
 def downvote_article(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     if article.downvote.filter(id=request.user.id).exists():
         article.downvote.remove(request.user)
@@ -223,6 +249,8 @@ def downvote_article(request, article_id):
 
 
 def downvote_article2(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     if article.downvote.filter(id=request.user.id).exists():
         article.downvote.remove(request.user)
@@ -233,6 +261,8 @@ def downvote_article2(request, article_id):
 
 
 def downvote_article3(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     category_id = article.category_id
     if article.downvote.filter(id=request.user.id).exists():
@@ -244,6 +274,8 @@ def downvote_article3(request, article_id):
 
 
 def delete_article(request, article_id):
+    """
+    """
     article = get_object_or_404(Article, id=article_id)
     category_id = article.category_id
     article.delete()
@@ -251,6 +283,8 @@ def delete_article(request, article_id):
 
 
 def delete_comment(request, comment_id):
+    """
+    """
     comment = get_object_or_404(Comment, id=comment_id)
     article_id = comment.article_id
     comment.delete()

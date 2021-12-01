@@ -3,9 +3,11 @@
 {% block content %}
 {% load static %}
 
+<!-- Background image with page title -->
 <header class="py-5 bg-light border-bottom mb-4 background-photo" style="background-image: linear-gradient(rgba(255,255,255,0.8), 
     rgba(255,255,255,0.8)), url({% static 'assets/background.jpg' %});">
     <div class="container">
+        <!-- Message alerts for authentication, articles awaiting approval and errors -->
         <div class="row p-0 m-0">
             <div class="col-6 offset-3">
                 {% for message in messages %}
@@ -25,17 +27,21 @@
     </div>
 </header>
 
+<!-- List of categories -->
 <div class="container">
     <div class="row">
         <div class="col-lg-8 mx-auto">
             <div class="row">
                 {% for category in categories %}
+                <!-- Categories -->
                 <div class="col-lg-6 category-list">
                     <div class="card mb-4 border-dark">
                         <div class="card-body">
+                            <!-- Category name -->
                             <div class="row">
                                 <h2 class="card-title center-text">{{ category.category_name }}</h2>
                             </div>
+                            <!-- Category button options -->
                             <div class="row">
                                 <a class="btn btn-primary col-8 offset-2 mb-1" href="/category/articles/{{ category.id }}">View Articles</a>
                                 {% if user == category.category_author %}
@@ -52,6 +58,7 @@
                 {% endif %}
                 {% endfor %}
             </div>
+            <!-- 'More Categories' button -->
             {% if categories.count > 6 %}
             <div class="row">
                 <button id="load-categories" class="btn btn-primary">More Categories</button>

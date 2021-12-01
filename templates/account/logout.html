@@ -5,10 +5,12 @@
 {% block head_title %}{% trans "Sign Out" %}{% endblock %}
 
 {% block content %}
+<!-- Title -->
 <h1 class="center-text pt-5">{% trans "Sign Out" %}</h1>
 
 <p class="center-text pt-2">{% trans 'Are you sure you want to sign out?' %}</p>
 
+<!-- Logout form -->
 <form class="pt-2" method="post" action="{% url 'account_logout' %}">
   {% csrf_token %}
   {% if redirect_field_value %}

@@ -5,103 +5,106 @@
 <div class="container mt-5">
     <div class="row">
         <div class="col-lg-10 mx-auto">
-            <!-- Post content-->
+            <!-- Article content section -->
             <article>
-                <!-- Post header-->
+                <!-- Article header-->
                 <header class="mb-4">
-                    <!-- Post title-->
+                    <!-- Headline -->
                     <h1 class="fw-bolder mb-1 text-center">Headline: {{ article.headline }}</h1>
-                    <!-- Post meta content-->
+                    <!-- Date posted -->
                     <div class="text-muted fst-italic mb-2 text-center">Posted on {{ article.time_created|date:"j F, Y, g:i a" }} by
                         {{ article.author }}</div>
-                    <!-- Post categories-->
+                    <!-- Article category badge -->
                     <div class="row">
                         <a class="badge bg-secondary text-decoration-none link-light category-badge mx-auto"
                         href="/category/articles/{{ category.id }}">{{ category.category_name }}</a>
                     </div>
                 </header>
-                <!-- Preview image figure-->
+                <!-- Article main image-->
                 {% if "default_image" not in article.image.url %}
                 <div class="row">
-                    <div class="col-lg-8 offset-2">
+                    <div class="col-12 col-md-8 offset-md-2">
                         <figure class="mb-4 col-lg-12">
                             <div class="ml-5">
-                                <img class="mr-5 article-image" src="{{ article.image.url }}" center center>
+                                <img class="mr-5 article-image" src="{{ article.image.url }}" alt="Article Image" center center>
                             </div>
                         </figure>
                     </div>
                 </div>
                 {% endif %}
-                <!-- Post content-->
+                <!-- Article content -->
                 <section class="mb-5">
                     <p>{{ article.content | safe }}</p>
                 </section>
             </article>
-
-            <div class="row">
-                <div class="col-2">
-                    <div class="row">
-                        <div class="col-5">
-                            {% if user.is_authenticated %}
-                            <form action="{% url 'upvote_article' article.id %}" method="POST">
-                                {% csrf_token %}
-                                {% if upvoted %}
-                                <button class="text-dark upvote-green"><i class="fas fa-arrow-up"></i></button>
-                                {% else %}
-                                <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-                            <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
-                            {% endif %}
-                        </div>
-                        <div class="col-2 mx-auto">
-                            {{ vote_count }}
-                        </div>
-                        <div class="col-5">
-                            {% if user.is_authenticated %}
-                            <form action="{% url 'downvote_article' article.id %}" method="POST">
-                                {% csrf_token %}
-                                {% if downvoted %}
-                                <button class="text-dark downvote-red"><i class="fas fa-arrow-down"></i></button>
-                                {% else %}
-                                <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
-                                {% endif %}
-                            </form>
-                            {% else %}
-                            <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
-                            {% endif %}
-                        </div>
-                    </div>
+            <div class="row mb-3">
+                <!-- Upvote -->
+                <div class="article-upvote pe-4 me-2">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'upvote_article' article.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if upvoted %}
+                        <button class="text-dark upvote-green"><i class="fas fa-arrow-up"></i></button>
+                        {% else %}
+                        <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <button class="text-dark upvote"><i class="fas fa-arrow-up"></i></button>
+                    {% endif %}
                 </div>
-                <div class="col-1">
+                <!-- Vote Counter -->
+                <div class="article-vote-count pe-2 me-2">
+                    {{ vote_count }}
+                </div>
+                <!-- Downvote -->
+                <div class="article-downvote ps-2 ms-2">
+                    {% if user.is_authenticated %}
+                    <form action="{% url 'downvote_article' article.id %}" method="POST">
+                        {% csrf_token %}
+                        {% if downvoted %}
+                        <button class="text-dark downvote-red"><i class="fas fa-arrow-down"></i></button>
+                        {% else %}
+                        <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
+                        {% endif %}
+                    </form>
+                    {% else %}
+                    <button class="text-dark downvote"><i class="fas fa-arrow-down"></i></button>
+                    {% endif %}
+                </div>
+                <!-- Number of comments counter -->
+                <div class="article-comment-count ps-5">
                     {% with comments.count as num_of_comments %}
-                    <div class="text-dark"><i class="far fa-comments"></i> {{ num_of_comments }}</div>
+                    <i class="far fa-comments text-dark"></i> {{ num_of_comments }}
                     {% endwith %}
                 </div>
+            </div>
+            <!-- Buttons for the author -->
+            <div class="row">
                 {% if user == article.author %}
-                <div class="col-5"></div>
-                <div class="col-2 float-left"><a class="btn btn-info" href='/article/edit/{{ article.id }}' id="editSummernote">Edit Article</a></div>
-                <div class="col-2 float-left"><a class="btn btn-danger" href="/article/delete/{{ article.id }}">Delete Article</a></div>
+                <div class="col-2"><a class="btn btn-info edit-article-button" href='/article/edit/{{ article.id }}' id="editSummernote">Edit Article</a></div>
+                <div class="col-2 offset-6 offset-sm-7 col-md-2 offset-md-8"><a class="btn btn-danger" href="/article/delete/{{ article.id }}">Delete Article</a></div>
                 {% endif %}
             </div>
-            <!-- Comments section-->
+            <!-- Comments section -->
             <section class="mt-3">
                 <div class="card bg-light">
                     <div class="card-body">
-                        <!-- Comment form-->
                         <div class="row">
+                            <!-- List of comments -->
                             <div class="col-7 card-body">
                                 <h2>Comments:</h2>
                                 {% for comment in comments %}
+                                <!-- Comments -->
                                 <div class="comment-list">
                                     <div class="mb-2 ms-1">
-                                        <!-- Parent comment-->
+                                        <!-- Comment details: Author and date published -->
                                         <div class="row">
                                             <p class="fw-bold mb-0">{{ comment.users_name }}
                                                 <span class="text-muted fw-light">{{ comment.time_created_comment|date:"j M Y, g:i a" }}</span>
                                             </p>
                                         </div>
+                                        <!-- Comment content -->
                                         <div class="ms-0 row">
                                             {{ comment.body }}
                                         </div>
@@ -113,13 +116,15 @@
                                 </div>
                                 {% endfor %}
                                 {% if comments.count > 4 %}
+                                <!-- 'More Comments' button -->
                                 <div class="row">
                                     <button id="load-comments" class="mt-2 mx-auto btn btn-primary content-width">More comments</button>
                                 </div>
                                 {% endif %}
                             </div>
+                            <!-- Comment form -->
                             {% if user.is_authenticated %}
-                            <div class="col-5 pe-4 card-body">
+                            <div class="col-12 col-md-5 pe-4 card-body">
                                 <div class="mb-4 mt-3">
                                     <form class="mb-4" method="POST">
                                         {% csrf_token %}
@@ -135,7 +140,6 @@
                             </div>
                             {% endif %}
                         </div>
-                        <!-- Comment with nested comments-->
                     </div>
                 </div>
             </section>

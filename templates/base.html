@@ -27,12 +27,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css" 
         integrity="sha512-F7WyTLiiiPqvu2pGumDR15med0MDkUIo5VTVyyfECR5DZmCnDhti9q5VID02ItWjq6fvDfMaBaDl2J3WdL1uxA==" 
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Internal CSS -->
     <link rel="stylesheet" href="{% static 'css/style.css' %}" type="text/css">
     <title>Premier League News</title>
 </head>
 
 <body class="body-container">
-    <!-- Responsive navbar-->
+    <!-- Navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
             <a class="navbar-brand" href="{% url 'display_top_articles' %}">Premier League News</a>
@@ -62,18 +63,32 @@
     <footer class="py-5 bg-dark news-footer">
         <div class="container"><p class="m-0 text-center text-white">Copyright &copy; Premier League News 2021</p></div>
     </footer>
-    <!-- Bootstrap core JS-->
+
+    <!-- Bootstrap JavaScript-->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- summernote javascript -->
+    <!-- Summernote JavaScript -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
-    <!-- javascript -->
+    <!-- Internal JavaScript -->
     <script src="{% static 'js/script.js' %}"></script>
     <script>
+        /**
+         * Prepopulates the the article content to summernote when the 
+         * user wants to edit the article.
+        */
         $(document.getElementById('summernote')).ready(function() {
             var article_content = '{{ article.content | safe }}';
             $('#summernote').summernote('code', article_content);
-        });    
+        });
+        
+        /**
+         * Prepopulates the the article summary to the summary textarea when the 
+         * user wants to edit the article.
+        */
+        $(document.getElementById('id_summary')).ready(function() {
+            var summary_content = '{{ article.summary | safe }}';
+            $('#id_summary').html(summary_content);
+        }); 
     </script>
 </body>
 </html>

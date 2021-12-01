@@ -8,6 +8,10 @@
 
 /*jshint esversion: 6 */
 
+/**
+ * Reveals and hides the 'More Comments' button when there
+ * are more comments available to view.
+*/
 $(function () {
     $(".comment-list").slice(0, 4).show();
     $("#load-comments").on('click', function () {
@@ -18,6 +22,10 @@ $(function () {
     });
 });
 
+/**
+ * Reveals and hides the 'More Categories' button when there
+ * are more categories available to view.
+*/
 $(function () {
     $(".category-list").slice(0, 6).show();
     $("#load-categories").on('click', function () {
@@ -28,6 +36,9 @@ $(function () {
     });
 });
 
+/**
+ * Sets up the Summernote textarea box
+*/
 $(document).ready(function(){
     $('#summernote').summernote({
         placeholder: 'Hello stand alone ui',
@@ -45,8 +56,12 @@ $(document).ready(function(){
     });
 });
 
+/**
+ * Sets a timer for the notifications that appear below the 
+ * navbar to disappear
+*/
 setTimeout(function() {
     let info = document.getElementById("msg");
-    let notification = new bootstrap.Alert(info);
-    notification.close();
+    let alert = new bootstrap.Alert(info);
+    alert.close();
 }, 2500);
