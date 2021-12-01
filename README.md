@@ -1,28 +1,30 @@
 # Premier League News
 
-The Premier League News site allows users to easily interact with up to date news regarding transfers, players and results. The site enables users to post articles which can either be opinion posts or up to date news articles alongside sharing their thoughts on these posts through commenting and voting (upvoting and downvoting). The target audience are those who are interested in learning more about the English Premier League alongside what is currently trending. 
+The Premier League News site allows users to easily interact with up to date news regarding transfers, players and results within the English Premier League. The site enables users to post articles which can either be opinion posts or up to date news articles alongside sharing their thoughts on these articles through commenting and voting - similar to the social media site, Reddit, with upvoting and downvoting. The target audience are those who are interested in learning more about the English Premier League alongside what is currently trending. 
 
 ![Am I Responsive Mockup](https://github.com/sams4566/)
 
-## User stories__
+## User stories
 
 ### Epics
 
+Below are three of the epics I had throughout the project:
+
 #### Epic 1: Create articles
   - User Story 1: Create article 
-    - Task 1: Create article model in model.py
+    - Task 1: Create Article model in model.py
     - Task 2: Add function for add article
     - Task 3: Add html for add article page
   - User Story 2: View list of articles 
     - Task 1: Create a list of the articles and iterate them through on a html page
-    - Create redirects on functions that directs users to the list of articles page
+    - Task 2: Create create a 'Home' page that has the list of articles displayed
   - User Story 2 - Open individual article 
     - Task 1: Create function that selects an individual article and displays all the information stored in the data model
     - Task 2: Edit html to ensure the information is displayed in the correct place
 
 #### Epic 2: Create Categories
   - User Story 1: Change category 
-    - Task 1: Create data model and link it to the Article model
+    - Task 1: Create category data model and link it to the article data model
     - Task 2: Create form to allow the user to submit a new category
   - User Story 2: Edit and delete categories 
     - Task 1: Create function for editing the category which prepopulates the existing data
@@ -30,22 +32,22 @@ The Premier League News site allows users to easily interact with up to date new
 
 #### Epic 3: Create Comment
   - User Story 1: Comment on an article 
-    - Task 1: Create comment model that is linked to the Article model
+    - Task 1: Create comment data model that is linked to the article data model
     - Task 2: Create a form that allows users to comment on an individual article
   - User Story 2: Modify and display comments
     - Task 1: Add to the view article function an iteration that displays existing comments 
     - Task 2: Create function that allows users to delete their comments
 
 ### Story points
-Below is a diagram that shows the user stories for the projects timebox and breaks down the number of story points allocated to each:
+- Below is a diagram that shows the user stories for the projects timebox and breaks down the number of story points allocated to each:
 
 ![Story points](https://github.com/sams4566/)
 
 ## Data Model
 ### Schema
   - The below database diagram shows the breakdown of my database which helped me to work out the layout of the site and how to structure my python functions.
-  - The flow from category to article to comment meant that the functions I created had a logical flow making it easier for those trying to decipher the code.
-  - For the database I used ‘postgres’ on Heroku and for the local host ‘sqlite3’.
+  - The flow from category to article to comment meant that the functions I created had a logical flow alongside making it easier for those trying to decipher the code.
+  - For the production database I used ‘postgres’ on Heroku and for the local database I used ‘sqlite3’.
 
 ![Schema](https://github.com/sams4566/)
 
@@ -65,7 +67,7 @@ Below is a diagram that shows the user stories for the projects timebox and brea
   - I used the summernote API to allow users to add in any content they like to their articles including pictures and videos. Summernote also gives users control of the spacing and layout compared with the original django provided text content box.
 
 - __Images__
-  - Images were stored on the cloudinary API to allow the images to be saved and loaded quickly when required by the site.
+  - Images were stored on the Cloudinary API to allow the images to be saved and loaded quickly when required by the site.
 
 ## Features
 - __Header__
@@ -86,7 +88,7 @@ Below is a diagram that shows the user stories for the projects timebox and brea
 - __List of articles pages__
   - Both the home page and the category articles page are both formatted in the same way with the only difference being the ordering of the articles. The home page is filtered with the most popular articles from all the categories at the top and the category articles page has the most recent articles for that category at the top.
   - Users can see the articles they have voted on due to the up and down buttons being highlighted green and red respectively.
-  - The main image is present as a teaser to the article along with the headline and a short extract about the content. 
+  - The main image is present as a teaser to the article along with the headline and a short summary about the content. 
   - If more than six articles are on display the page is paginated that allows users to go back and forth between lists of articles.
 
 ![List of articles pages](https://github.com/sams4566/)
@@ -94,7 +96,7 @@ Below is a diagram that shows the user stories for the projects timebox and brea
 - __Categories__
   - If the user is logged in they have the option of adding, editing and deleting the categories they have created. 
   - If more than six categories are created a ‘More Categories’ button appears to allow the user to see the other categories.
-  - They can go into each individual categorie to see a list of articles assigned to this category
+  - They can go into each individual category to see a list of articles assigned to that category.
 
 ![Categories](https://github.com/sams4566/)
 
@@ -111,7 +113,7 @@ Below is a diagram that shows the user stories for the projects timebox and brea
   - If a user is logged in they have the option of adding an article to a specific category. 
   - Through using the summernote API the user can add videos and photos to the body of their article. 
   - Once the article is submitted, a message will appear telling the user that their article is awaiting approval. This allows the content to be monitored by an administrator.
-  - If an image is not selected a default image of the premier league lion is used.
+  - If an image is not selected a default image of the Premier League Lion is used.
   - The article is also not published until a unique headline is selected. An error message will display if the headline has been used.
   - If the user edits the page after it has been approved the page is prepopulated with the information they had entered previously making it easy for the user to make quick changes.
 
@@ -123,53 +125,50 @@ Below is a diagram that shows the user stories for the projects timebox and brea
 
 ![Approving articles and categories](https://github.com/sams4566/)
 
-- __Future features__
-  - Add options for the article views so users can choose between the most popular articles and the most recent.
-  - Add name tags to articles and comments so that users can click on other users' profiles to see their articles.
+### Future features
+  - Add options for the list of article views so users can choose between the most popular articles and the most recent.
+  - Add name tags to articles and comments so that users can click on other users profiles to see their articles.
   - Allow articles to be part of more than one category.
   - Add votes to comments and list the most popular comments at the top of the comment section.
 
 ## Technologies used
 
 ### Languages
-  - HTML - I used html to create the content and main layout of each page
-  - CSS - CSS was used to style the html elements and make the site more appealing to user. It was also used to allow the website to respond to different screen sizes.
-  - JavaScript - I used JavaScript to enhance some of the front end functionality.
-  - Python - I used python as the main back end language. It was used to write all of the different functions that occur when requested by the user.
+  - **HTML** - I used html to create the content and main layout of each page
+  - **CSS** - CSS was used to style the html elements and make the site more appealing to users. It was also used to allow the website to respond to different screen sizes.
+  - **JavaScript** - I used JavaScript to enhance some of the front end functionality.
+  - **Python** - I used python as the main back end language. It was used to write all of the different functions that occur when requested by the user.
 
 ### Extensions
-  - Django - The site was built using the Django full-stack framework where I used many of the built in shortcuts and variables to create the websites backend. Out of the django extensions I used both the AllAuth and Coverage. AllAuth was used to confirm authentications with users on the site and Coverage was used to find out how much of the back end code I had automatically tested.
-  - Summernote - I used the summernote API to allow users to insert customised content,  including pictures and videos, to their articles. 
-  - Cloudinary - Cloudinary was chosen to allow users to have their images saved once uploaded as the Heroku platform deletes photos around 24 hours after upload. The admin can also login to cloudinary and see a list of all of the photos uploaded.
-  - Bootstraps - I used bootstraps to allow the site to be structured and built quickly. 
-  - jQuery - jQuery was chosen to allow the javascript code to be implemented easily.
-  - Postgres - I used Postgres as the database for the Heroku deployed website as it is well integrated with Heroku.
+  - **Django** - The site was built using the Django full-stack framework where I used many of the built in shortcuts and variables to create the websites backend. Out of the django extensions I used both AllAuth and Coverage. AllAuth was used to confirm authentication with users on the site and Coverage was used to find out how much of the back end code I had automatically tested.
+  - **Summernote** - I used the summernote API to allow users to insert customised content,  including pictures and videos, to their articles. 
+  - **Cloudinary** - Cloudinary was chosen to allow users to have their images saved once uploaded as the Heroku platform deletes photos around 24 hours after upload. The admin can also login to cloudinary and see a list of all of the photos uploaded.
+  - **Bootstraps** - I used bootstraps to allow the site to be structured and built quickly. 
+  - **jQuery** - jQuery was chosen to allow the javascript code to be implemented easily.
+  - **Postgres** - I used Postgres as the database for the Heroku deployed website as it is well integrated with Heroku.
 
 ## Testing
  
 ### Bugs
-#### Solved Bugs 
 
-##### Bug 1
+#### Bug 1
   - Both my css and javascript were not appearing on Heroku when it was deployed and the below error message was appearing in the console:
 
 `Refused to apply style from 'https://premier-league-news1.herokuapp.com/static/css/style.css' because its MIME type ('text/html') is not a supported stylesheet MIME type, and strict MIME checking is enabled.`
 
-  - The bug was resolved by setting Debug to false and for adding {% static %} tags to the css and javascript links in my html.
+  - The bug was resolved by setting Debug to False and for adding {% static %} tags to the css and javascript links in my html.
 
-##### Bug 2
-  - The footer wasn’t sticking to the bottom of the page which was impacting on the user experience. To fix this I created a new class for the footer and added bottom: 0 and  position: absolute.
+#### Bug 2
+  - The footer wasn’t sticking to the bottom of the page which was impacting on the user experience. To fix this I created a new class for the footer and added `bottom: 0` and `position: absolute`.
 
-##### Bug 3
-  - Summernote was adding in all the html tags to my article content when I tried to edit the article. This was resolved by adding ‘| safe‘ to the javascript function.
+#### Bug 3
+  - Summernote was adding in all the html tags to my article content when I tried to edit the article. This was resolved by adding `| safe` to the javascript function.
 
-#### Unfixed Bugs
-- No unfixed bugs
 
 ### Automated Testing
 
 The site was tested using the built-in django ‘TestCase’ library in the tests.py file. I ran 8 tests to test the sites basic functionality including testing:
-  - Information was successfully entered in the data models 
+  - Information was successfully entered in the data model 
   - Form data couldn’t be left empty
   - Categories could be added, edited and deleted
 
@@ -188,7 +187,7 @@ Below is a list of some of the key tests I completed before submitting the proje
   - Ensure users that aren’t logged in cannot edit, add or delete any of the information - including accessing the administration page.
   - Make sure both the upvote and downvote buttons work on all pages. 
   - Check that pagination works correctly on all pages. 
-  - Make sure comments are appearing correctly alongside a ‘More Comments’ that allows users to see more comments.
+  - Make sure comments are appearing correctly alongside a ‘More Comments’ button that allows users to see more comments.
   - Ensure admin users can approve Articles and Categories
   - Ensure users can easily login and logout without errors.
   - Check messages appear below the nav bar such as letting the user know their article is awaiting approval.
@@ -198,11 +197,11 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
 
 ### Security
 
- - Authentication - I used the Django’s AllAuth package to ensure users have to login to make edits to the site. I have also made sure that users can only edit their own articles and categories.
+ - **Authentication** - I used Django’s AllAuth package to ensure users have to login to make edits to the site. I have also made sure that users can only edit their own articles and categories.
 
- - Environment Variables - I stored private information in the env.py file which was then added into the .gitignore file. This meant that any information in the env.py file was not committed to the repository.
+ - **Environment Variables** - I stored private information in the env.py file which was then added into the .gitignore file. This meant that any information in the env.py file was not committed to the repository.
 
- - Debug - When the site is in production on Heroku debug is set to false ensuring the user doesn’t get information about why certain urls aren’t working.
+ - **Debug** - When the site is in production on Heroku debug is set to `False` ensuring the user doesn’t get information about why certain urls aren’t working.
 
 ### Validators
 
@@ -226,35 +225,38 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
   - Navigate to the main page of this repository.
   - Click on the ‘Code’ dropdown menu to the left of the green ‘Gitpod’ button.
   - Copy the HTTPS url and then open your own workspace.
-  - Go to the terminal of your new workspace and type git clone then paste your copied url. 
+  - Go to the terminal of your new workspace and type `git clone` + 'copied url'. 
   - You will then need to create a env.py file and add a SECRET_KEY and your CLOUDINARY_URL in the below format.
 
-`import os`
-`os.environ["CLOUDINARY_URL"] = "Enter CLOUDINARY_URL”`
-`os.environ["SECRET_KEY"] = "Enter SECRET_KEY"`
+    `import os`
+
+    `os.environ["CLOUDINARY_URL"] = "Enter CLOUDINARY_URL”`
+
+    `os.environ["SECRET_KEY"] = "Enter SECRET_KEY"`
 
   - You will also have to add the env.py file to a .gitignore file that will stop the information from being committed.
-  - To install all of the required modules use pip3 install -r requirements.txt in the terminal. 
-  - Finally, you will have to add DEVELOPMENT = True to your workspace variables. Alternatively you can remove ‘development’ from settings.py and set DEBUG = True making sure the database is set to sqlite3.
-  - Type python3 manage.py runserver to run the site.
+  - To install all of the required modules use `pip3 install -r requirements.txt` in the terminal. 
+  - Finally, you will have to add `DEVELOPMENT = True` to your workspace variables. Alternatively you can remove `development` from settings.py and set `DEBUG = True` making sure the database is set to sqlite3.
+  - Type `python3 manage.py runserver` to run the site.
 
 ### Deployment to Heroku
 
-  - Create a Heroku app by firstly logging in through the terminal by using - heroku login -i
-  - Create an app by using the command heroku apps:create <appname> --region eu in the terminal
-  - Login to Heroku’s official site and go to the Resources section of your app and add Heroku Postgres to the Add-ons section. 
+  - Create a Heroku app by firstly logging in through the terminal by using - `heroku login -i`
+  - Create an app by using the command `heroku apps:create <appname> --region eu` in the terminal
+  - Login to Heroku’s official site and go to the Resources section of your app and add 'Heroku Postgres' to the Add-ons section. 
   - Go to the Settings folder in Heroku’s website and add in the CLOUDINARY_URL, SECRET_KEY and HEROKU_HOSTNAME to the config vars. 
   - Add the DATABASE_URL and HEROKU_HOSTNAME config vars to your settings.py file (Check the setting.py file in this repository to find where they go).
   - Add the DATABASE_URL config var to your env.py file in the below format:
 
-`import os`
-`os.environ["DATABASE_URL"] = "Enter DATABASE_URL”`
+    `import os`
 
-  - Create a Procfile in the root directory and add web: gunicorn <appname>.wsgi:application to it. 
-  - Add a requirements.txt file by typing pip3 freeze --local > requirements.txt in the terminal.
+    `os.environ["DATABASE_URL"] = "Enter DATABASE_URL”`
+
+  - Create a Procfile in the root directory and add `web: gunicorn <appname>.wsgi:application` to it. 
+  - Add a requirements.txt file by typing `pip3 freeze --local > requirements.txt` in the terminal.
   - Go to your Heroku app on Heroku’s website and navigate to the ‘Deploy’ section. Click on ‘Github’ in the Deployment Section and add your github username and your repository name.
   - Click ‘Deploy Branch’ at the bottom of the deployment section. This will connect Heroku to your workspace.
-  - Migrate the changes to the new Postgres database by typing python3 manage.py migrate in the terminal in your workspace and then commit all your changes.
+  - Migrate the changes to the new Postgres database by typing `python3 manage.py migrate` in the terminal in your workspace and then commit all your changes.
   - Lastly, click ‘Deploy Branch’ at the bottom of the deployment section again on the Heroku website. You will now be able to visit your site.
 
 
