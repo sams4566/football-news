@@ -274,6 +274,7 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
   - [Summernote Documentation](https://summernote.org/getting-started/#installation) - How to install Summernote
 
 ### Media
+  - [Sky Sports](https://www.skysports.com/premier-league-news) - for article pictures and content
   - [Premier League Team Badges Background Photo](https://resources.evertonfc.com/photo-resources/2021/06/16/c7e13cc8-6c06-423c-af4b-560c751d2ad9/MSOC-0044-Fixture-Release-Graphics_16.9-FULL-SEASON-CRESTS-_neww.jpg?width=1600&height=900)
   - [Premier League Lion Image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.premierleague.com%2Fnews%2F942495&psig=AOvVaw11JUtw0rHz-7ZRYEqwLB1e&ust=1638476870804000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOimzZG4w_QCFQAAAAAdAAAAABAD)
 

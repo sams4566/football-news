@@ -76,7 +76,7 @@
        * user wants to edit the article.
       */
       $(document.getElementById('summernote')).ready(function() {
-          var article_content = '{{ article.content | safe }}';
+          var article_content = `{{ article.content | safe }}`;
           $('#summernote').summernote('code', article_content);
       });      
       /**
@@ -84,7 +84,7 @@
        * user wants to edit the article.
       */
       $(document.getElementById('id_summary')).ready(function() {
-          var summary_content = '{{ article.summary | safe }}';
+          var summary_content = `{{ article.summary | safe }}`;
           $('#id_summary').html(summary_content);
       }); 
   </script>
