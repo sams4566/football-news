@@ -2,7 +2,7 @@
 
 The Premier League News site allows users to easily interact with up to date news regarding transfers, players and results within the English Premier League. The site enables users to post articles which can either be opinion posts or up to date news articles alongside sharing their thoughts on these articles through commenting and voting - similar to the social media site, Reddit, with upvoting and downvoting. The target audience are those who are interested in learning more about the English Premier League alongside what is currently trending. 
 
-![Am I Responsive Mockup](https://github.com/sams4566/premier-league-news/blob/main/readme_images/accessibility.jpg)
+![Welcome Image](https://github.com/sams4566/premier-league-news/blob/main/readme_images/welcome-image.jpg)
 
 ## User stories
 
@@ -74,12 +74,12 @@ Below are three of the epics I had throughout the project:
   - Images were stored on the Cloudinary API to allow the images to be saved and loaded quickly when required by the site.
 
 ## Features
-- __Header__
+- __Header and Footer__
   - Both the header and footer are styled to allow users to easily navigate the site and are stuck at the top and bottom of each page.
   - The header forms a dropdown menu at lower screen sizes to allow users to stop the options from being bunched up.
   - The header and footer are the same in all pages as they are part of the base.html file.
 
-![Header](https://github.com/sams4566/premier-league-news/blob/main/readme_images/header-footer.jpg)
+![Header and Footer](https://github.com/sams4566/premier-league-news/blob/main/readme_images/header-footer.jpg)
 
 - __Authentication__
 
@@ -112,7 +112,7 @@ Below are three of the epics I had throughout the project:
   - The user who created the article also has the option to edit and delete the article from within this page.
 
 ![Article](https://github.com/sams4566/premier-league-news/blob/main/readme_images/article.jpg)
-
+---
 ![Article2](https://github.com/sams4566/premier-league-news/blob/main/readme_images/article2.jpg)
 
 - __Adding and editing Articles__
@@ -212,13 +212,13 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
 ### Validators
 
   - HTML
-    - No errors were returned when passing through the official W3C Validator
+    - No errors were returned when passing through the official [W3C Validator](https://validator.w3.org/)
   - CSS
-    - No errors were found when passing through the official (Jigsaw) Validator
+    - No errors were found when passing through the official [(Jigsaw) Validator](https://jigsaw.w3.org/css-validator/)
   - JavaScript
-    - No significant issues were found when passing through the JSHint JavaScript Validator
+    - No significant issues were found when passing through the [JSHint JavaScript Validator](https://jshint.com/)
   - Python
-    - No errors were returned when passing through PEP8 Online
+    - No errors were returned when passing through [PEP8 Online](http://pep8online.com)
   - Accessibility
     - The web page was tested through Lighthouse in Google Chrome’s developer tools and confirmed a high level of accessibility
 
