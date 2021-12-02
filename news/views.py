@@ -8,7 +8,7 @@ from django.contrib import messages
 
 def display_categories(request):
     """
-    Displays the list of categories stored in the Category data 
+    Displays the list of categories stored in the Category data
     model when the 'Categories' option is selected from the navbar.
     """
     categories = Category.objects.all().filter(approve_category=True)
@@ -50,11 +50,11 @@ def add_category(request):
 
 def edit_category(request, category_id):
     """
-    If the user has created a category, they have the option to edit 
-    its name. On the categories.html page, the user can click the 
-    'Edit Category' button which will bring them to the 
-    edit_category.html page with the prepopulated category name 
-    already entered. The user can then click the 'Update Category' 
+    If the user has created a category, they have the option to edit
+    its name. On the categories.html page, the user can click the
+    'Edit Category' button which will bring them to the
+    edit_category.html page with the prepopulated category name
+    already entered. The user can then click the 'Update Category'
     button which will take them back to the categories.html page.
     """
     category = get_object_or_404(Category, id=category_id)
@@ -82,8 +82,8 @@ def edit_category(request, category_id):
 
 def delete_category(request, category_id):
     """
-    If the user has created a category, they have the option to delete 
-    it. On the categories.html page, the user can click the 
+    If the user has created a category, they have the option to delete
+    it. On the categories.html page, the user can click the
     'Delete Category' button which will remove the category from the
     Category data model and return the user to the categories.html
     page
@@ -95,12 +95,13 @@ def delete_category(request, category_id):
 
 def display_top_articles(request):
     """
-    Displays the list of articles stored in the Article data model 
-    when the user first enters the site and when the 'Home' 
+    Displays the list of articles stored in the Article data model
+    when the user first enters the site and when the 'Home'
     option in the navbar is selected. The articles are displayed
     with the most popular at the top.
     """
     articles = list(Article.objects.all().filter(approved=True))
+
     def sort_article(article):
         return article.upvotes_count() - article.downvotes_count()
     articles.sort(key=sort_article, reverse=True)
@@ -113,10 +114,10 @@ def display_top_articles(request):
 
 def display_articles(request, category_id):
     """
-    Displays the list of articles stored in the Article data 
-    model for a specific category when the user clicks 'View 
-    articles' on a specific category on the categories.html 
-    page. The articles are displayed with the most recently 
+    Displays the list of articles stored in the Article data
+    model for a specific category when the user clicks 'View
+    articles' on a specific category on the categories.html
+    page. The articles are displayed with the most recently
     published articles at the top.
     """
     category = get_object_or_404(Category, id=category_id)
@@ -138,7 +139,7 @@ def add_article(request, category_id):
     """
     When the 'Add Article' button from the category_articles.html page
     is selected the add_article.html page is displayed. The user
-    can add the new articles details and will be returned to the 
+    can add the new articles details and will be returned to the
     categories_articles.html page once submitted.
     """
     category = get_object_or_404(Category, id=category_id)
@@ -169,9 +170,10 @@ def add_article(request, category_id):
     context = {"form": form}
     return render(request, "add_article.html", context)
 
+
 def view_article(request, article_id):
     """
-    When the user clicks 'View Article' on a specific article they 
+    When the user clicks 'View Article' on a specific article they
     will be taken to article.html which displays the articles details
     stored in the database. The user can add a comment and like the
     article if they are logged in. The comments are are displayed
@@ -210,13 +212,14 @@ def view_article(request, article_id):
     }
     return render(request, "article.html", context)
 
+
 def edit_article(request, article_id):
     """
-    If the user has created an article, they have the option to edit 
-    it. On the article.html page, the user can click the 
-    'Edit Article' button which will bring them to the edit_article 
-    page with the prepopulated article details already entered. The 
-    user can then click the 'Update Article' button which will take 
+    If the user has created an article, they have the option to edit
+    it. On the article.html page, the user can click the
+    'Edit Article' button which will bring them to the edit_article
+    page with the prepopulated article details already entered. The
+    user can then click the 'Update Article' button which will take
     them back to the article.html page.
     """
     article = get_object_or_404(Article, id=article_id)
@@ -235,12 +238,13 @@ def edit_article(request, article_id):
     }
     return render(request, "edit_article.html", context)
 
+
 def delete_article(request, article_id):
     """
-    If the user has created the article, they have the option to 
-    delete it. On the article.html page, the user can click the 
-    'Delete Article' button which will remove the article from the 
-    Article data model and return the user to the 
+    If the user has created the article, they have the option to
+    delete it. On the article.html page, the user can click the
+    'Delete Article' button which will remove the article from the
+    Article data model and return the user to the
     category_articles.html page
     """
     article = get_object_or_404(Article, id=article_id)
@@ -251,10 +255,10 @@ def delete_article(request, article_id):
 
 def delete_comment(request, comment_id):
     """
-    If the user has written a comment, they have the option to 
-    delete it. On the bottom of the article.html page in the 
-    comments section, the user can click the 'Delete Comment' 
-    button below there comment which will remove the comment 
+    If the user has written a comment, they have the option to
+    delete it. On the bottom of the article.html page in the
+    comments section, the user can click the 'Delete Comment'
+    button below there comment which will remove the comment
     from the Comment data model.
     """
     comment = get_object_or_404(Comment, id=comment_id)
@@ -266,7 +270,7 @@ def delete_comment(request, comment_id):
 def upvote_article(request, article_id):
     """
     When the upvote button is pressed on the article.html
-    page the same page is loaded with either adding or 
+    page the same page is loaded with either adding or
     removing the users upvote to the Article data model.
     """
     article = get_object_or_404(Article, id=article_id)
@@ -281,7 +285,7 @@ def upvote_article(request, article_id):
 def upvote_article2(request, article_id, *args, **kwargs):
     """
     When the upvote button is pressed on the index.html
-    page the same page is loaded with either adding or 
+    page the same page is loaded with either adding or
     removing the users upvote to the Article data model.
     """
     article = get_object_or_404(Article, id=article_id)
@@ -295,9 +299,9 @@ def upvote_article2(request, article_id, *args, **kwargs):
 
 def upvote_article3(request, article_id):
     """
-    When the upvote button is pressed on the 
-    category-articles.html page the same page is loaded 
-    with either adding or removing the users upvote to 
+    When the upvote button is pressed on the
+    category-articles.html page the same page is loaded
+    with either adding or removing the users upvote to
     the Article data model.
     """
     article = get_object_or_404(Article, id=article_id)
@@ -313,7 +317,7 @@ def upvote_article3(request, article_id):
 def downvote_article(request, article_id):
     """
     When the downvote button is pressed on the article.html
-    page the same page is loaded with either adding or 
+    page the same page is loaded with either adding or
     removing the users downvote to the Article data model.
     """
     article = get_object_or_404(Article, id=article_id)
@@ -328,7 +332,7 @@ def downvote_article(request, article_id):
 def downvote_article2(request, article_id):
     """
     When the downvote button is pressed on the index.html
-    page the same page is loaded with either adding or 
+    page the same page is loaded with either adding or
     removing the users downvote to the Article data model.
     """
     article = get_object_or_404(Article, id=article_id)
@@ -342,9 +346,9 @@ def downvote_article2(request, article_id):
 
 def downvote_article3(request, article_id):
     """
-    When the downvote button is pressed on the 
-    category-articles.html page the same page is loaded 
-    with either adding or removing the users downvote to 
+    When the downvote button is pressed on the
+    category-articles.html page the same page is loaded
+    with either adding or removing the users downvote to
     the Article data model.
     """
     article = get_object_or_404(Article, id=article_id)

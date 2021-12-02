@@ -107,7 +107,7 @@ Below are three of the epics I had throughout the project:
 - __Article__
   - Each article has the main image in the center with the headline, date of publish and category badge at the top.
   - The user has the option of voting positively or negatively on the article and alongside leaving a comment.
-  - The total number of comments and the net number of upvotes minus downvotes are indicated above the comments section to let user know the popularity of the article.
+  - The total number of comments and the net number of upvotes minus downvotes are indicated above the comments section to let users know the popularity of the article.
   - User’s can load more comments by clicking the ‘More comments’ button when there are more than four comments.
   - The user who created the article also has the option to edit and delete the article from within this page.
 
@@ -242,7 +242,7 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
 
   - You will also have to add the env.py file to a .gitignore file that will stop the information from being committed.
   - To install all of the required modules use `pip3 install -r requirements.txt` in the terminal. 
-  - Finally, you will have to add `DEVELOPMENT = True` to your workspace variables. Alternatively you can remove `development` from settings.py and set `DEBUG = True` making sure the database is set to sqlite3.
+  - Finally, you will have to add `DEVELOPMENT = True` to your workspace variables. Alternatively you can remove `development` from settings.py but make sure the database is set to sqlite3.
   - Type `python3 manage.py runserver` to run the site.
 
 ### Deployment to Heroku
@@ -277,6 +277,6 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
 
 ### Media
   - [Sky Sports](https://www.skysports.com/premier-league-news) - for article pictures and content
-  - [Premier League Team Badges Background Photo](https://resources.evertonfc.com/photo-resources/2021/06/16/c7e13cc8-6c06-423c-af4b-560c751d2ad9/MSOC-0044-Fixture-Release-Graphics_16.9-FULL-SEASON-CRESTS-_neww.jpg?width=1600&height=900)
+  - [Premier League Badges Background Photo](https://resources.evertonfc.com/photo-resources/2021/06/16/c7e13cc8-6c06-423c-af4b-560c751d2ad9/MSOC-0044-Fixture-Release-Graphics_16.9-FULL-SEASON-CRESTS-_neww.jpg?width=1600&height=900)
   - [Premier League Lion Image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.premierleague.com%2Fnews%2F942495&psig=AOvVaw11JUtw0rHz-7ZRYEqwLB1e&ust=1638476870804000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOimzZG4w_QCFQAAAAAdAAAAABAD)
 
