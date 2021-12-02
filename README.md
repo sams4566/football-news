@@ -2,7 +2,7 @@
 
 The Premier League News site allows users to easily interact with up to date news regarding transfers, players and results within the English Premier League. The site enables users to post articles which can either be opinion posts or up to date news articles alongside sharing their thoughts on these articles through commenting and voting - similar to the social media site, Reddit, with upvoting and downvoting. The target audience are those who are interested in learning more about the English Premier League alongside what is currently trending. 
 
-![Am I Responsive Mockup](https://github.com/sams4566/)
+![Am I Responsive Mockup](https://github.com/sams4566/premier-league-news/blob/main/readme_images/accessibility.jpg)
 
 ## User stories
 
@@ -41,11 +41,11 @@ Below are three of the epics I had throughout the project:
 ### Story points
 - Below is a diagram that shows the user stories for the projects timebox and breaks down the number of story points allocated to each:
 
-![Story points](https://github.com/sams4566/)
+![Story points](https://github.com/sams4566/premier-league-news/blob/main/readme_images/story-points.jpg)
 
 - The user stories were also documented throughout the project using the 'Issues' tab in the github repository. Below is a screenshot of the table used:
 
-![User Stories Table](https://github.com/sams4566/)
+![User Stories Table](https://github.com/sams4566/premier-league-news/blob/main/readme_images/user-stories.jpg)
 
 ## Data Model
 ### Schema
@@ -53,7 +53,7 @@ Below are three of the epics I had throughout the project:
   - The flow from category to article to comment meant that the functions I created had a logical flow alongside making it easier for those trying to decipher the code.
   - For the production database I used ‘postgres’ on Heroku and for the local database I used ‘sqlite3’.
 
-![Schema](https://github.com/sams4566/)
+![Schema](https://github.com/sams4566/premier-league-news/blob/main/readme_images/schema.jpg)
 
 ### Site layout
 - __Theme__
@@ -62,7 +62,7 @@ Below are three of the epics I had throughout the project:
   - I decided on the ‘Blog Home’ theme (image below) from Start Bootstraps as it had good proportions and limited the complexity of the site. 
   - I decided to have a contrast of black and white throughout the site as this highlights the colour in the images and buttons along with making the site easier to read.
 
-![Theme](https://github.com/sams4566/)
+![Theme](https://github.com/sams4566/premier-league-news/blob/main/readme_images/theme.jpg)
 
 - __Icons__
   - I used font awesome for some of the icons as they appear as text rather than an image which limits the icon from being altered at different screen sizes
@@ -79,7 +79,7 @@ Below are three of the epics I had throughout the project:
   - The header forms a dropdown menu at lower screen sizes to allow users to stop the options from being bunched up.
   - The header and footer are the same in all pages as they are part of the base.html file.
 
-![Header](https://github.com/sams4566/)
+![Header](https://github.com/sams4566/premier-league-news/blob/main/readme_images/header-footer.jpg)
 
 - __Authentication__
 
@@ -87,7 +87,7 @@ Below are three of the epics I had throughout the project:
   - Users will have to sign in to add, edit, and delete categories and articles alongside adding and deleting comments.
   - I used the built in django.allauth package to retrieve the functionality to allow users to be created.
 
-![Authentication](https://github.com/sams4566/)
+![Authentication](https://github.com/sams4566/premier-league-news/blob/main/readme_images/authentication.jpg)
 
 - __List of articles pages__
   - Both the home page and the category articles page are both formatted in the same way with the only difference being the ordering of the articles. The home page is filtered with the most popular articles from all the categories at the top and the category articles page has the most recent articles for that category at the top.
@@ -95,14 +95,14 @@ Below are three of the epics I had throughout the project:
   - The main image is present as a teaser to the article along with the headline and a short summary about the content. 
   - If more than six articles are on display the page is paginated that allows users to go back and forth between lists of articles.
 
-![List of articles pages](https://github.com/sams4566/)
+![List of articles pages](https://github.com/sams4566/premier-league-news/blob/main/readme_images/list-of-articles.jpg)
 
 - __Categories__
   - If the user is logged in they have the option of adding, editing and deleting the categories they have created. 
   - If more than six categories are created a ‘More Categories’ button appears to allow the user to see the other categories.
   - They can go into each individual category to see a list of articles assigned to that category.
 
-![Categories](https://github.com/sams4566/)
+![Categories](https://github.com/sams4566/premier-league-news/blob/main/readme_images/categories.jpg)
 
 - __Article__
   - Each article has the main image in the center with the headline, date of publish and category badge at the top.
@@ -111,7 +111,9 @@ Below are three of the epics I had throughout the project:
   - User’s can load more comments by clicking the ‘More comments’ button when there are more than four comments.
   - The user who created the article also has the option to edit and delete the article from within this page.
 
-![Article](https://github.com/sams4566/)
+![Article](https://github.com/sams4566/premier-league-news/blob/main/readme_images/article.jpg)
+
+![Article2](https://github.com/sams4566/premier-league-news/blob/main/readme_images/article2.jpg)
 
 - __Adding and editing Articles__
   - If a user is logged in they have the option of adding an article to a specific category. 
@@ -121,13 +123,13 @@ Below are three of the epics I had throughout the project:
   - The article is also not published until a unique headline is selected. An error message will display if the headline has been used.
   - If the user edits the page after it has been approved the page is prepopulated with the information they had entered previously making it easy for the user to make quick changes.
 
-![Adding and editing Articles](https://github.com/sams4566/)
+![Adding and editing Articles](https://github.com/sams4566/premier-league-news/blob/main/readme_images/edit-article.jpg)
 
 - __Approving articles and categories__
   - When a new article or category has been submitted an admin will have the ability to approve submissions through the built in django screen below.
   - They can also edit or delete the articles or categories if necessary at any point.
 
-![Approving articles and categories](https://github.com/sams4566/)
+![Approving articles and categories](https://github.com/sams4566/premier-league-news/blob/main/readme_images/admin.jpg)
 
 ### Future features
   - Add options for the list of article views so users can choose between the most popular articles and the most recent.
@@ -180,7 +182,7 @@ To run the tests you can type: `python3 manage.py test`
 
 The coverage report for how much of the code I’ve covered with tests is below:
 
-![Coverage](https://github.com/sams4566/)
+![Coverage](https://github.com/sams4566/premier-league-news/blob/main/readme_images/coverage.jpg)
 
 ### Manual Testing
 
@@ -220,7 +222,7 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
   - Accessibility
     - The web page was tested through Lighthouse in Google Chrome’s developer tools and confirmed a high level of accessibility
 
-![Accessibility](https://github.com/sams4566/)
+![Accessibility](https://github.com/sams4566/premier-league-news/blob/main/readme_images/accessibility.jpg)
 
 ## Deployment
 
