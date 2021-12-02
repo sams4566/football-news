@@ -65,3 +65,4 @@ setTimeout(function() {
     let alert = new bootstrap.Alert(info);
     alert.close();
 }, 2500);
+

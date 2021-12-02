@@ -267,13 +267,13 @@ For user testing I asked a friend to complete simple tasks such as adding and ed
 ## Credits
 
 ### Content/Tutorials
-  - The Django Documentation - https://docs.djangoproject.com/en/3.2/
-  - PHP Documentation - How to change the date format - https://www.php.net/manual/en/function.date.php
-  - Bootstraps Themes - Blog Home (https://startbootstrap.com/template/blog-home) and Blog Post (https://startbootstrap.com/template/blog-post)
-  - Cloudinary Documentation - how to install Cloudinary - https://cloudinary.com/documentation/django_image_and_video_upload
-  - Summernote Documentation - how to install Summernote - https://summernote.org/getting-started/#installation 
+  - [The Django Documentation](https://docs.djangoproject.com/en/3.2/)
+  - [PHP Documentation](https://www.php.net/manual/en/function.date.php) - How to change the date format
+  - Bootstraps Themes - [Blog Home](https://startbootstrap.com/template/blog-home) and [Blog Post](https://startbootstrap.com/template/blog-post)
+  - [Cloudinary Documentation](https://cloudinary.com/documentation/django_image_and_video_upload) - How to install Cloudinary
+  - [Summernote Documentation](https://summernote.org/getting-started/#installation) - How to install Summernote
 
 ### Media
-  - Premier League Team Badges Background Photo https://resources.evertonfc.com/photo-resources/2021/06/16/c7e13cc8-6c06-423c-af4b-560c751d2ad9/MSOC-0044-Fixture-Release-Graphics_16.9-FULL-SEASON-CRESTS-_neww.jpg?width=1600&height=900 
-  - Premier League Lion Image - https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.premierleague.com%2Fnews%2F942495&psig=AOvVaw0qYRtaYGiC5Z4rWHhKt15b&ust=1638353478723000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCJDS5Lvsv_QCFQAAAAAdAAAAABAD 
+  - [Premier League Team Badges Background Photo](https://resources.evertonfc.com/photo-resources/2021/06/16/c7e13cc8-6c06-423c-af4b-560c751d2ad9/MSOC-0044-Fixture-Release-Graphics_16.9-FULL-SEASON-CRESTS-_neww.jpg?width=1600&height=900)
+  - [Premier League Lion Image](https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.premierleague.com%2Fnews%2F942495&psig=AOvVaw11JUtw0rHz-7ZRYEqwLB1e&ust=1638476870804000&source=images&cd=vfe&ved=0CAsQjRxqFwoTCOimzZG4w_QCFQAAAAAdAAAAABAD)
 
